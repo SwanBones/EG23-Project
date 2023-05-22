@@ -2,7 +2,7 @@
  * 
  */
 /**
- * @author boone
+ * @author boone tran
  *
 
 module EG23 {
