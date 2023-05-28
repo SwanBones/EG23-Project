@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Color;
-
+import java.awt.FlowLayout;
 
 public class Menu {
 
@@ -52,7 +52,6 @@ public class Menu {
 		frame.getContentPane().setBackground(new Color(218, 179, 124));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new GridLayout(0, 1, 0, 20));
 		
 		menuPanel = new JPanel();
         menuPanel.setBackground(new Color(218, 179, 124));
@@ -60,7 +59,7 @@ public class Menu {
 		
 		JLabel lblNewLabel = new JLabel("La Bataille des Programmes");
 		lblNewLabel.setBackground(new Color(222, 241, 255));
-		lblNewLabel.setFont(new Font("Century Gothic", Font.BOLD, 30));
+		lblNewLabel.setFont(new Font("Century Gothic", Font.BOLD, 23));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		menuPanel.add(lblNewLabel);
 		
@@ -89,9 +88,40 @@ public class Menu {
                 showAuthorsPage();
             }
         });
+		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		menuPanel.add(btnNewButton_2);
 		
-		frame.getContentPane().add(menuPanel);
+		frame.getContentPane().add(menuPanel, BorderLayout.CENTER);
+		
+		JPanel panel_north = new JPanel();
+		FlowLayout flowLayout_2 = (FlowLayout) panel_north.getLayout();
+		flowLayout_2.setVgap(20);
+		panel_north.setBorder(null);
+		panel_north.setBackground(new Color(218, 179, 124));
+		frame.getContentPane().add(panel_north, BorderLayout.NORTH);
+		
+		JPanel panel_south = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) panel_south.getLayout();
+		flowLayout.setVgap(20);
+		panel_south.setBorder(null);
+		panel_south.setForeground(new Color(0, 0, 0));
+		panel_south.setBackground(new Color(218, 179, 124));
+		frame.getContentPane().add(panel_south, BorderLayout.SOUTH);
+		
+		JPanel panel_west = new JPanel();
+		FlowLayout flowLayout_1 = (FlowLayout) panel_west.getLayout();
+		flowLayout_1.setHgap(20);
+		flowLayout_1.setVgap(0);
+		panel_west.setBackground(new Color(218, 179, 124));
+		panel_west.setBorder(null);
+		frame.getContentPane().add(panel_west, BorderLayout.WEST);
+		
+		JPanel panel_east = new JPanel();
+		FlowLayout flowLayout_3 = (FlowLayout) panel_east.getLayout();
+		flowLayout_3.setHgap(20);
+		panel_east.setBackground(new Color(218, 179, 124));
+		panel_east.setBorder(null);
+		frame.getContentPane().add(panel_east, BorderLayout.EAST);
 	}
 
 	private void showAuthorsPage() {
