@@ -69,6 +69,15 @@ public class Menu {
 		btnNewButton.setFont(new Font("Century Gothic", Font.PLAIN, 15));
 		menuPanel.add(btnNewButton);
 		
+		// Action listener for the "Jouer" button
+        btnNewButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                SoldierPage soldierPage = new SoldierPage();
+                soldierPage.initialize();
+                frame.dispose(); // Close the menu frame
+            }
+        });
+		
 		JButton btnNewButton_1 = new JButton("Règles");
 		btnNewButton_1.setBackground(new Color(73, 95, 109));
 		btnNewButton_1.setForeground(new Color(222, 241, 255));
@@ -163,5 +172,8 @@ public class Menu {
         frame.revalidate();
         frame.repaint();
 	}
+	
+	
+	
 	
 }
