@@ -9,7 +9,7 @@ public class SoldierPage {
     private JLabel soldierIcon;
     private JLabel soldierName;
 
-    public static void main(String[] args) {
+    public static void main(java.lang.String[] args) {
         SwingUtilities.invokeLater(() -> {
             SoldierPage window = new SoldierPage();
             window.initialize();
@@ -20,7 +20,7 @@ public class SoldierPage {
         frame = new JFrame();
         frame.getContentPane().setBackground(new Color(217, 179, 124));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new BorderLayout());
+        frame.getContentPane().setLayout(new BorderLayout());
 
         // Get the current window size so it fits the screen
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -37,15 +37,15 @@ public class SoldierPage {
         JPanel leftPanel = createLeftPanel();
         leftPanel.setPreferredSize(new Dimension(500, 800));
         JPanel paddedLeftPanel = createPaddedPanel(leftPanel, 200,new Color(218, 179, 124));
-        frame.add(paddedLeftPanel, BorderLayout.WEST);
+        frame.getContentPane().add(paddedLeftPanel, BorderLayout.WEST);
 
         JPanel rightPanel = createRightPanel();
         rightPanel.setPreferredSize(new Dimension(500, 800));
         JPanel paddedRightPanel = createPaddedPanel(rightPanel, 200,new Color(218, 179, 124));
-        frame.add(paddedRightPanel, BorderLayout.EAST);
+        frame.getContentPane().add(paddedRightPanel, BorderLayout.EAST);
 
         JPanel topPanel = createTopPanel();
-        frame.add(topPanel, BorderLayout.NORTH);
+        frame.getContentPane().add(topPanel, BorderLayout.NORTH);
 
         soldierIcon = new JLabel();
         soldierIcon.setPreferredSize(new Dimension(75, 75));
