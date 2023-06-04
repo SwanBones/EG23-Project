@@ -1,91 +1,70 @@
 package view;
 
-import java.awt.Color;
-import java.awt.EventQueue;
-import javax.swing.ImageIcon;
-import javax.swing.DefaultListModel;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import java.awt.BorderLayout;
-import java.awt.Font;
-import javax.swing.JScrollBar;
-import javax.swing.JButton;
-import javax.swing.SwingConstants;
-import java.awt.FlowLayout;
-import javax.swing.AbstractListModel;
+import javax.swing.*;
+import java.awt.*;
+import java.util.Random;
 
-public class RepartirTroupes {
+public class RepartirTroupes extends JFrame {
+    private static final boolean SCALABLE = true;
+    private static final String[] LIEUX = {"BDE", "Centre administratif", "Halle sportive", "-", "-"};
 
-	private JFrame frame;
+    public RepartirTroupes() {
+        setTitle("Répartissez vos troupes");
+        getContentPane().setBackground(new Color(217, 179, 124));
+        setLayout(new BorderLayout());
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					RepartirTroupes window = new RepartirTroupes();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+        // Title
+        JLabel title = new JLabel("Répartissez vos troupes", SwingConstants.CENTER);
+        title.setFont(new Font("Century Gothic", Font.BOLD, 24));
+        title.setForeground(new Color(73, 95, 109));
+        add(title, BorderLayout.NORTH);
 
-	/**
-	 * Create the application.
-	 */
-	public RepartirTroupes() {
-		initialize();
-	}
+        // Image
+        ImageIcon imageIcon = new ImageIcon("src/pngs/plan_utt.png");
+        JLabel imageLabel = new JLabel(imageIcon);
+        if (SCALABLE) {
+            imageLabel.setPreferredSize(new Dimension(500, 500));
+        }
+        add(imageLabel, BorderLayout.CENTER);
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(218, 179, 124));
-		frame.getContentPane().setLayout(new BorderLayout(0, 0));
-		
-		JPanel leftPanel = new JPanel();
-		leftPanel.setBackground(new Color(73, 95, 110));
-		frame.getContentPane().add(leftPanel, BorderLayout.WEST);
-		
-		JPanel topPanel = new JPanel();
-		topPanel.setBackground(new Color(218, 179, 124));
-		frame.getContentPane().add(topPanel, BorderLayout.NORTH);
-		
-		JLabel lblNewLabel = new JLabel("Répartir vos troupes");
-		lblNewLabel.setForeground(new Color(73, 95, 110));
-		lblNewLabel.setFont(new Font("Century Gothic", Font.BOLD, 23));
-		topPanel.add(lblNewLabel);
-		
-		//Center Panel for map
-		JPanel centerPanel = new JPanel(new BorderLayout());
-		centerPanel.setBackground(new Color(218, 179, 124));
-		frame.getContentPane().add(centerPanel, BorderLayout.CENTER);
-		ImageIcon map = new ImageIcon("src/pngs/plan_utt.png");
-		JLabel imageLabel = new JLabel(map);
-		imageLabel.setBackground(new Color(218, 179, 124));
-		centerPanel.add(imageLabel, BorderLayout.CENTER);
+        // Button Panel
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+        JScrollPane scrollPane = new JScrollPane(buttonPanel);
+        scrollPane.setPreferredSize(new Dimension(200, 500));
+        add(scrollPane, BorderLayout.WEST);
 
-		
-		//Bottom Panel
-		JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		bottomPanel.setBackground(new Color(218, 179, 124));
-		frame.getContentPane().add(bottomPanel, BorderLayout.SOUTH);
-		
-		JButton btnNewButton = new JButton("Suivant");
-		btnNewButton.setFont(new Font("Century Gothic", Font.BOLD, 11));
-		bottomPanel.add(btnNewButton);
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		
-	}
+        // Buttons
+        for (int i = 1; i <= 20; i++) {
+            JButton button = new JButton();
+            button.setPreferredSize(new Dimension(100, 100));
+            button.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+            button.setForeground(new Color(73, 95, 109));
+       
+            String iconPath = i == 1 ? "src/pngs/red_icon.png" : i <= 5 ? "src/pngs/orange_icon.png" : "src/pngs/yellow_icon.png";
+            Image image = imageIcon.getImage(); // transform it 
+            Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+            button.setIcon(new ImageIcon(iconPath));
+            buttonPanel.add(button);
+
+            JLabel cityLabel = new JLabel("Soldat " + i +": "+LIEUX[new Random().nextInt(LIEUX.length)]);
+            cityLabel.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+            cityLabel.setForeground(new Color(73, 95, 109));
+            buttonPanel.add(cityLabel);
+        }
+
+        // Next button
+        JButton nextButton = new JButton("Suivant");
+        nextButton.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+        nextButton.setForeground(new Color(73, 95, 109));
+        add(nextButton, BorderLayout.SOUTH);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        pack();
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(RepartirTroupes::new);
+    }
 }

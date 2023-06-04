@@ -47,7 +47,7 @@ public class Menu {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	public void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(218, 179, 124));
 		frame.setBounds(100, 100, 450, 300);
