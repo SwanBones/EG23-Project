@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 
+
 public class RepartirTroupes extends JFrame {
     private static final boolean SCALABLE = true;
     private static final String[] LIEUX = {"BDE", "Centre administratif", "Halle sportive", "-", "-"};
@@ -19,14 +20,20 @@ public class RepartirTroupes extends JFrame {
         title.setForeground(new Color(73, 95, 109));
         add(title, BorderLayout.NORTH);
 
-        // Image
-        ImageIcon imageIcon = new ImageIcon("src/pngs/plan_utt.png");
+        //Image
+        ImageIcon imageIcon = new ImageIcon("src/pngs/plan1.png");
         JLabel imageLabel = new JLabel(imageIcon);
         if (SCALABLE) {
             imageLabel.setPreferredSize(new Dimension(500, 500));
         }
         add(imageLabel, BorderLayout.CENTER);
-
+        
+        // Left Panel Wrapper so that it looks pretty
+        JPanel leftPanelWrapper = new JPanel();
+        leftPanelWrapper.setLayout(new BoxLayout(leftPanelWrapper, BoxLayout.Y_AXIS));
+        leftPanelWrapper.setBorder(BorderFactory.createEmptyBorder(0, 30, 0, 0));
+        leftPanelWrapper.setBackground(new Color(217, 179, 124));
+        
         // Button Panel
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
@@ -37,33 +44,41 @@ public class RepartirTroupes extends JFrame {
         // Buttons
         for (int i = 1; i <= 20; i++) {
             JButton button = new JButton();
-            button.setPreferredSize(new Dimension(100, 100));
+            button.setPreferredSize(new Dimension(50, 50));
             button.setFont(new Font("Century Gothic", Font.PLAIN, 12));
             button.setForeground(new Color(73, 95, 109));
-       
-            String iconPath = i == 1 ? "src/pngs/red_icon.png" : i <= 5 ? "src/pngs/orange_icon.png" : "src/pngs/yellow_icon.png";
-            Image image = imageIcon.getImage(); // transform it 
-            Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
-            button.setIcon(new ImageIcon(iconPath));
-            buttonPanel.add(button);
 
-            JLabel cityLabel = new JLabel("Soldat " + i +": "+LIEUX[new Random().nextInt(LIEUX.length)]);
+            String iconPath = i == 1 ? "src/pngs/red_icon.png" : i <= 5 ? "src/pngs/orange_icon.png" : "src/pngs/yellow_icon.png";
+            ImageIcon icon = new ImageIcon(iconPath);
+            Image image = icon.getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
+            button.setIcon(new ImageIcon(image));
+            buttonPanel.add(button);
+            button.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+            JLabel cityLabel = new JLabel("Soldat " + i + ": " + LIEUX[new Random().nextInt(LIEUX.length)]);
             cityLabel.setFont(new Font("Century Gothic", Font.PLAIN, 12));
             cityLabel.setForeground(new Color(73, 95, 109));
             buttonPanel.add(cityLabel);
+            cityLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         }
-
+        
+        //Add Scroll Pane to the Left Panel Wrapper
+        leftPanelWrapper.add(scrollPane);
+        // Add Left Panel Wrapper to the main layout
+        add(leftPanelWrapper, BorderLayout.WEST);
+        
         // Next button
         JButton nextButton = new JButton("Suivant");
         nextButton.setFont(new Font("Century Gothic", Font.PLAIN, 12));
         nextButton.setForeground(new Color(73, 95, 109));
-        add(nextButton, BorderLayout.SOUTH);
-
+        add(nextButton, BorderLayout.SOUTH); 
+        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setVisible(true);
     }
-
+  
+    
     public static void main(String[] args) {
         SwingUtilities.invokeLater(RepartirTroupes::new);
     }
