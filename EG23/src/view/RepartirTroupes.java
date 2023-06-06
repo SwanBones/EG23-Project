@@ -56,20 +56,22 @@ public class RepartirTroupes extends JFrame {
         JButton button = (JButton)evt.getSource();
         JPanel buttonPanel = buttonContainers.get(button);
         Point buttonOrigin = buttonOrigins.get(button);
-        
-        Point buttonScreen = button.getLocationOnScreen();  // Get absolute location on screen
+
+        // Get the location of the cursor on the screen
+        Point cursorLocation = evt.getLocationOnScreen();
 
         for (JPanel panel : dragZonesJpanel) {
-            Rectangle panelScreen = new Rectangle(panel.getLocationOnScreen(), panel.getSize());  // Get absolute panel area on screen
+            Rectangle panelBounds = new Rectangle(panel.getLocationOnScreen(), panel.getSize());
 
-            if (panelScreen.contains(buttonScreen)) {
-                Point buttonInPanel = SwingUtilities.convertPoint(button.getParent(), button.getLocation(), panel);  // Convert point to panel's coordinate system
-                panel.add(button);
-                button.setLocation(buttonInPanel);  // Set location in panel
+            if (panelBounds.contains(cursorLocation)) {
                 buttonPanel.remove(button);
+                panel.add(button);
                 buttonContainers.put(button, panel);
-                this.revalidate();
-                this.repaint();
+                // revalidate and repaint both containers
+                buttonPanel.revalidate();
+                buttonPanel.repaint();
+                panel.revalidate();
+                panel.repaint();
                 return;
             }
         }
@@ -79,6 +81,8 @@ public class RepartirTroupes extends JFrame {
         this.revalidate();
         this.repaint();
     }
+
+
     public RepartirTroupes() {
     	
     	Zones.reset();
