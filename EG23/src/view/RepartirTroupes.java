@@ -47,31 +47,34 @@ public class RepartirTroupes extends JFrame {
     }
     
     private void buttonDragged(MouseEvent evt) {
-    	
         JButton button = (JButton)evt.getSource();
-        button.setLocation(button.getX() + evt.getX() - button.getWidth() / 2, button.getY() + evt.getY() - button.getHeight() / 2);
+        Point newLocation = SwingUtilities.convertPoint(button, evt.getPoint(), button.getParent());
+        button.setLocation(newLocation.x - button.getWidth() / 2, newLocation.y - button.getHeight() / 2);
     }
 
     private void buttonReleased(MouseEvent evt) {
-    	//TODO make button green / other color when applied to be able to keep track if the character has been droppeds
         JButton button = (JButton)evt.getSource();
         JPanel buttonPanel = buttonContainers.get(button);
         Point buttonOrigin = buttonOrigins.get(button);
-       // refreshZonePanels();
-        for (int i = 0; i<dragZonesJpanel.size();i++) {
-        	JPanel panel = dragZonesJpanel.get(i);
-            if (panel.getBounds().contains(button.getLocation())) {
-            	panel.add(button);
+        
+        Point buttonScreen = button.getLocationOnScreen();  // Get absolute location on screen
+
+        for (JPanel panel : dragZonesJpanel) {
+            Rectangle panelScreen = new Rectangle(panel.getLocationOnScreen(), panel.getSize());  // Get absolute panel area on screen
+
+            if (panelScreen.contains(buttonScreen)) {
+                Point buttonInPanel = SwingUtilities.convertPoint(button.getParent(), button.getLocation(), panel);  // Convert point to panel's coordinate system
+                panel.add(button);
+                button.setLocation(buttonInPanel);  // Set location in panel
                 buttonPanel.remove(button);
-                System.out.println(evt.getSource().getClass());
-                //button.setLocation(buttonOrigin);
                 buttonContainers.put(button, panel);
                 this.revalidate();
                 this.repaint();
                 return;
             }
         }
-     // If not over any drop zone, return the button to its original position
+
+        // If not over any drop zone, return the button to its original position
         button.setLocation(buttonOrigin);
         this.revalidate();
         this.repaint();
