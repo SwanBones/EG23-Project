@@ -45,7 +45,13 @@ public class RepartirTroupes extends JFrame {
     	}
     	//*/
     }
-    
+    private void buttonClicked(MouseEvent evt) {
+    	SoldierInfo soldierInfo = new SoldierInfo();
+    	
+        soldierInfo.initialize();
+		// TODO Auto-generated method stub
+		
+	}
     private void buttonDragged(MouseEvent evt) {
         JButton button = (JButton)evt.getSource();
         Point newLocation = SwingUtilities.convertPoint(button, evt.getPoint(), button.getParent());
@@ -134,7 +140,14 @@ public class RepartirTroupes extends JFrame {
             button.setAlignmentX(Component.CENTER_ALIGNMENT);
             buttonOrigins.put(button, button.getLocation());
             buttonContainers.put(button, buttonPanel);
+            
+            button.addMouseListener(new MouseAdapter() {
+            	@Override
+            	public void mouseClicked(MouseEvent evt) {
+            		buttonClicked(evt);
+            	}
 
+            });
             button.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
                 public void mouseDragged(java.awt.event.MouseEvent evt) {
                     buttonDragged(evt);
@@ -145,6 +158,7 @@ public class RepartirTroupes extends JFrame {
                     buttonReleased(evt);
                 }
             });
+            
 
             // The rest of your code...
         }
@@ -233,12 +247,14 @@ public class RepartirTroupes extends JFrame {
                 mapIcon = new ImageIcon("src/pngs/1.png");
                 mapImageLabel.setIcon(mapIcon);
                 draggedButtonsHere1.setBackground(Color.gray);
+                zonePanel1.setBackground(Color.gray);
             }
             @Override
             public void mouseExited(MouseEvent e) {
                 mapIcon = new ImageIcon("src/pngs/plan1.png");
                 mapImageLabel.setIcon(mapIcon);
                 draggedButtonsHere1.setBackground(new Color(238, 238, 238));
+                zonePanel1.setBackground(new Color(238, 238, 238));
             }
         });
         draggedButtonsHere2.addMouseListener(new MouseAdapter() {
@@ -247,12 +263,14 @@ public class RepartirTroupes extends JFrame {
                 mapIcon = new ImageIcon("src/pngs/2.png");
                 mapImageLabel.setIcon(mapIcon);
                 draggedButtonsHere2.setBackground(Color.gray);
+                zonePanel2.setBackground(Color.gray);
             }
             @Override
             public void mouseExited(MouseEvent e) {
                 mapIcon = new ImageIcon("src/pngs/plan1.png");
                 mapImageLabel.setIcon(mapIcon);
                 draggedButtonsHere2.setBackground(new Color(238, 238, 238));
+                zonePanel2.setBackground(new Color(238, 238, 238));
             }
         });
         draggedButtonsHere3.addMouseListener(new MouseAdapter() {
@@ -261,12 +279,14 @@ public class RepartirTroupes extends JFrame {
                 mapIcon = new ImageIcon("src/pngs/3.png");
                 mapImageLabel.setIcon(mapIcon);
                 draggedButtonsHere3.setBackground(Color.gray);
+                zonePanel3.setBackground(Color.gray);
             }
             @Override
             public void mouseExited(MouseEvent e) {
                 mapIcon = new ImageIcon("src/pngs/plan.png");
                 mapImageLabel.setIcon(mapIcon);
                 draggedButtonsHere3.setBackground(new Color(238, 238, 238));
+                zonePanel3.setBackground(new Color(238, 238, 238));
             }
         });
         draggedButtonsHere4.addMouseListener(new MouseAdapter() {
@@ -275,12 +295,14 @@ public class RepartirTroupes extends JFrame {
                 mapIcon = new ImageIcon("src/pngs/4.png");
                 mapImageLabel.setIcon(mapIcon);
                 draggedButtonsHere4.setBackground(Color.gray);
+                zonePanel4.setBackground(Color.gray);  
             }
             @Override
             public void mouseExited(MouseEvent e) {
                 mapIcon = new ImageIcon("src/pngs/plan1.png");
                 mapImageLabel.setIcon(mapIcon);
                 draggedButtonsHere4.setBackground(new Color(238, 238, 238));
+                zonePanel4.setBackground(new Color(238, 238, 238));
             }
         });
         draggedButtonsHere5.addMouseListener(new MouseAdapter() {
@@ -289,12 +311,14 @@ public class RepartirTroupes extends JFrame {
                 mapIcon = new ImageIcon("src/pngs/5.png");
                 mapImageLabel.setIcon(mapIcon);
                 draggedButtonsHere5.setBackground(Color.gray);
+                zonePanel5.setBackground(Color.gray);
             }
             @Override
             public void mouseExited(MouseEvent e) {
                 mapIcon = new ImageIcon("src/pngs/plan1.png");
                 mapImageLabel.setIcon(mapIcon);
                 draggedButtonsHere5.setBackground(new Color(238, 238, 238));
+                zonePanel5.setBackground(new Color(238, 238, 238));
             }
         });
         // The rest of your code...
