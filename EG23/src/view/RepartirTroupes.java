@@ -300,45 +300,15 @@ public class RepartirTroupes extends JFrame {
         // The rest of your code...
      // Define the dragZones
         dragZonesJpanel.add(draggedButtonsHere1);
+        draggedButtonsHere1.setLayout(new GridLayout(1, 0, 0, 0));
         dragZonesJpanel.add(draggedButtonsHere2);
+        draggedButtonsHere2.setLayout(new GridLayout(1, 0, 0, 0));
         dragZonesJpanel.add(draggedButtonsHere3);
+        draggedButtonsHere3.setLayout(new GridLayout(1, 0, 0, 0));
         dragZonesJpanel.add(draggedButtonsHere4);
+        draggedButtonsHere4.setLayout(new GridLayout(1, 0, 0, 0));
         dragZonesJpanel.add(draggedButtonsHere5);
-        
-        GridBagLayout gbl_draggedButtonsHere1 = new GridBagLayout();
-        gbl_draggedButtonsHere1.columnWidths = new int[]{0};
-        gbl_draggedButtonsHere1.rowHeights = new int[]{0};
-        gbl_draggedButtonsHere1.columnWeights = new double[]{Double.MIN_VALUE};
-        gbl_draggedButtonsHere1.rowWeights = new double[]{Double.MIN_VALUE};
-        draggedButtonsHere1.setLayout(gbl_draggedButtonsHere1);
-       
-        GridBagLayout gbl_draggedButtonsHere2 = new GridBagLayout();
-        gbl_draggedButtonsHere2.columnWidths = new int[]{0};
-        gbl_draggedButtonsHere2.rowHeights = new int[]{0};
-        gbl_draggedButtonsHere2.columnWeights = new double[]{Double.MIN_VALUE};
-        gbl_draggedButtonsHere2.rowWeights = new double[]{Double.MIN_VALUE};
-        draggedButtonsHere2.setLayout(gbl_draggedButtonsHere2);
-        
-        GridBagLayout gbl_draggedButtonsHere3 = new GridBagLayout();
-        gbl_draggedButtonsHere3.columnWidths = new int[]{0};
-        gbl_draggedButtonsHere3.rowHeights = new int[]{0};
-        gbl_draggedButtonsHere3.columnWeights = new double[]{Double.MIN_VALUE};
-        gbl_draggedButtonsHere3.rowWeights = new double[]{Double.MIN_VALUE};
-        draggedButtonsHere3.setLayout(gbl_draggedButtonsHere3);
-        
-        GridBagLayout gbl_draggedButtonsHere4 = new GridBagLayout();
-        gbl_draggedButtonsHere4.columnWidths = new int[]{0};
-        gbl_draggedButtonsHere4.rowHeights = new int[]{0};
-        gbl_draggedButtonsHere4.columnWeights = new double[]{Double.MIN_VALUE};
-        gbl_draggedButtonsHere4.rowWeights = new double[]{Double.MIN_VALUE};
-        draggedButtonsHere4.setLayout(gbl_draggedButtonsHere4);
-        
-        GridBagLayout gbl_draggedButtonsHere5 = new GridBagLayout();
-        gbl_draggedButtonsHere5.columnWidths = new int[]{0};
-        gbl_draggedButtonsHere5.rowHeights = new int[]{0};
-        gbl_draggedButtonsHere5.columnWeights = new double[]{Double.MIN_VALUE};
-        gbl_draggedButtonsHere5.rowWeights = new double[]{Double.MIN_VALUE};
-        draggedButtonsHere5.setLayout(gbl_draggedButtonsHere5);
+        draggedButtonsHere5.setLayout(new GridLayout(1, 0, 0, 0));
         
     }
   
