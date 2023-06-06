@@ -49,7 +49,7 @@ public class RepartirTroupes extends JFrame {
     private void buttonDragged(MouseEvent evt) {
         JButton button = (JButton)evt.getSource();
         Point newLocation = SwingUtilities.convertPoint(button, evt.getPoint(), button.getParent());
-        button.setLocation(newLocation.x - button.getWidth() / 2, newLocation.y - button.getHeight() / 2);
+        button.setLocation(button.getX() + evt.getX() - button.getWidth() / 2, button.getY() + evt.getY() - button.getHeight() / 2);
     }
 
     private void buttonReleased(MouseEvent evt) {
