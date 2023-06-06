@@ -12,8 +12,8 @@ public class Zones {
     private static ArrayList<Student> bu = new ArrayList();
     private static ArrayList<Student> quartierAdmin = new ArrayList();
     
-    private static Map<ArrayList<Student>,String> zoneArrayList = new HashMap<>();;
-    
+    //private static Map<ArrayList<Student>,String> zoneArrayList = new HashMap<>();;
+    private static ArrayList<ArrayList<Student>> zoneArrayList = new ArrayList();
     public static void clearLists() {
     	reserve.clear();
     	bde.clear();
@@ -24,11 +24,16 @@ public class Zones {
     }
     
     public static void fillZoneArrayList() {
-    	zoneArrayList.put(bde,"bde");
-    	zoneArrayList.put(quartierAdmin,"quartierAdmin");
-    	zoneArrayList.put(halleSport,"halleSport");
-    	zoneArrayList.put(halleIndus,"halleIndus");
-    	zoneArrayList.put(bu,"bu");
+    	//zoneArrayList.put(bde,"bde");
+    	//zoneArrayList.put(quartierAdmin,"quartierAdmin");
+    	//zoneArrayList.put(halleSport,"halleSport");
+    	//zoneArrayList.put(halleIndus,"halleIndus");
+    	//zoneArrayList.put(bu,"bu");
+    	zoneArrayList.add(bde);
+    	zoneArrayList.add(quartierAdmin);
+    	zoneArrayList.add(halleSport);
+    	zoneArrayList.add(halleIndus);
+    	zoneArrayList.add(bu);
     	
     }
     
@@ -47,11 +52,11 @@ public class Zones {
     	Zones.fillZoneArrayList();
 	}
     
-    public static Map<ArrayList<Student>,String> getZoneArrayList() {
+    public static ArrayList<ArrayList<Student>> getZoneArrayList() {
 		return zoneArrayList;
 	}
 
-	public static void setZoneArrayList(Map<ArrayList<Student>,String> zoneArrayList) {
+	public static void setZoneArrayList(ArrayList<ArrayList<Student>> zoneArrayList) {
 		Zones.zoneArrayList = zoneArrayList;
 	}
 

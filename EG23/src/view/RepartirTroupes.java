@@ -22,25 +22,28 @@ public class RepartirTroupes extends JFrame {
 
     private Map<JButton, Point> buttonOrigins = new HashMap<>();
     private Map<JButton, JPanel> buttonContainers = new HashMap<>();
-    private Map<JPanel, JPanel> dragZones = new HashMap<>();
-    private ArrayList<JPanel> dragZonesJpanel;
+    //private Map<JPanel, JPanel> dragZones = new HashMap<>();
+    private ArrayList<JPanel> dragZonesJpanel = new ArrayList();//TODO to set
     private ImageIcon mapIcon;
     private JLabel mapImageLabel;
     
     
-    public void refreshZonePanels() {
-   /*
+    public void refreshZonePanels() {//TEXT BASED
+    	///*
     	for (int i = 0; i<5;i++) {
-    		//get JPanel
-    		//remove all JLabels inside JPanel
+    		//get JPanel and remove all JLabels inside JPanel
+    		JPanel panelToRefresh = dragZonesJpanel.get(i);
+    		panelToRefresh.removeAll();
     		//get zone to add (use pointer?)
-    		ArrayList<Student> zoneToAdd = Zones.getZoneArrayList(i).;//iterate through the map
+    		ArrayList<Student> zoneToAdd = Zones.getZoneArrayList().get(i);//iterate through the arraylist
     		for (int j = 0; j<zoneToAdd.size();j++) {
-    			dragZonesJpanel.get(i).addlabel.;//add a JLabel to the JPanel
-    			label.setlabel = zoneToAdd.get(j).getName();//change the label of the JLabel
+    			JLabel label = new JLabel();
+    			label.setText(zoneToAdd.get(j).getName()); //change the label of the JLabel
+    			panelToRefresh.add(label);//add a JLabel to the JPanel
+ 
     		}
     	}
-    	*/
+    	//*/
     }
     
     private void buttonDragged(MouseEvent evt) {
@@ -50,16 +53,19 @@ public class RepartirTroupes extends JFrame {
     }
 
     private void buttonReleased(MouseEvent evt) {
+    	//TODO make button green / other color when applied to be able to keep track if the character has been droppeds
         JButton button = (JButton)evt.getSource();
         JPanel buttonPanel = buttonContainers.get(button);
         Point buttonOrigin = buttonOrigins.get(button);
-
-        for (Map.Entry<JPanel, JPanel> entry : dragZones.entrySet()) {
-            if (entry.getKey().getBounds().contains(button.getLocation())) {
+       // refreshZonePanels();
+        for (int i = 0; i<dragZonesJpanel.size();i++) {
+        	JPanel panel = dragZonesJpanel.get(i);
+            if (panel.getBounds().contains(button.getLocation())) {
+            	panel.add(button);
                 buttonPanel.remove(button);
-                entry.getKey().add(button);
-                button.setLocation(buttonOrigin);
-                buttonContainers.put(button, entry.getKey());
+                System.out.println(evt.getSource().getClass());
+                //button.setLocation(buttonOrigin);
+                buttonContainers.put(button, panel);
                 this.revalidate();
                 this.repaint();
                 return;
@@ -155,18 +161,8 @@ public class RepartirTroupes extends JFrame {
         zonePanel1.add(lblNewLabel_3, BorderLayout.NORTH);
         
         JPanel draggedButtonsHere1 = new JPanel();
-        draggedButtonsHere1.addMouseListener(new MouseAdapter() {
-        	@Override
-        	public void mouseEntered(MouseEvent e) {
-        		mapIcon = new ImageIcon("src/pngs/1.png");
-        		mapImageLabel = new JLabel(mapIcon);
-        	}
-        	@Override
-        	public void mouseExited(MouseEvent e) {
-        		mapIcon = new ImageIcon("src/pngs/plan1.png");
-        		mapImageLabel = new JLabel(mapIcon);
-        	}
-        });
+        
+        
         zonePanel1.add(draggedButtonsHere1, BorderLayout.CENTER);
         
         JPanel zonePanel2 = new JPanel();
@@ -222,38 +218,114 @@ public class RepartirTroupes extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setVisible(true);
-     
+        
+        //zone hovering
+        draggedButtonsHere1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                mapIcon = new ImageIcon("src/pngs/1.png");
+                mapImageLabel.setIcon(mapIcon);
+                draggedButtonsHere1.setBackground(Color.gray);
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                mapIcon = new ImageIcon("src/pngs/plan1.png");
+                mapImageLabel.setIcon(mapIcon);
+                draggedButtonsHere1.setBackground(new Color(238, 238, 238));
+            }
+        });
+        draggedButtonsHere2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                mapIcon = new ImageIcon("src/pngs/2.png");
+                mapImageLabel.setIcon(mapIcon);
+                draggedButtonsHere2.setBackground(Color.gray);
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                mapIcon = new ImageIcon("src/pngs/plan1.png");
+                mapImageLabel.setIcon(mapIcon);
+                draggedButtonsHere2.setBackground(new Color(238, 238, 238));
+            }
+        });
+        draggedButtonsHere3.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                mapIcon = new ImageIcon("src/pngs/3.png");
+                mapImageLabel.setIcon(mapIcon);
+                draggedButtonsHere3.setBackground(Color.gray);
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                mapIcon = new ImageIcon("src/pngs/plan.png");
+                mapImageLabel.setIcon(mapIcon);
+                draggedButtonsHere3.setBackground(new Color(238, 238, 238));
+            }
+        });
+        draggedButtonsHere4.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                mapIcon = new ImageIcon("src/pngs/4.png");
+                mapImageLabel.setIcon(mapIcon);
+                draggedButtonsHere4.setBackground(Color.gray);
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                mapIcon = new ImageIcon("src/pngs/plan1.png");
+                mapImageLabel.setIcon(mapIcon);
+                draggedButtonsHere4.setBackground(new Color(238, 238, 238));
+            }
+        });
+        draggedButtonsHere5.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                mapIcon = new ImageIcon("src/pngs/5.png");
+                mapImageLabel.setIcon(mapIcon);
+                draggedButtonsHere5.setBackground(Color.gray);
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                mapIcon = new ImageIcon("src/pngs/plan1.png");
+                mapImageLabel.setIcon(mapIcon);
+                draggedButtonsHere5.setBackground(new Color(238, 238, 238));
+            }
+        });
         // The rest of your code...
      // Define the dragZones
-        dragZones.put(draggedButtonsHere1, zonePanel1);
+        dragZonesJpanel.add(draggedButtonsHere1);
+        dragZonesJpanel.add(draggedButtonsHere2);
+        dragZonesJpanel.add(draggedButtonsHere3);
+        dragZonesJpanel.add(draggedButtonsHere4);
+        dragZonesJpanel.add(draggedButtonsHere5);
+        
         GridBagLayout gbl_draggedButtonsHere1 = new GridBagLayout();
         gbl_draggedButtonsHere1.columnWidths = new int[]{0};
         gbl_draggedButtonsHere1.rowHeights = new int[]{0};
         gbl_draggedButtonsHere1.columnWeights = new double[]{Double.MIN_VALUE};
         gbl_draggedButtonsHere1.rowWeights = new double[]{Double.MIN_VALUE};
         draggedButtonsHere1.setLayout(gbl_draggedButtonsHere1);
-        dragZones.put(draggedButtonsHere2, zonePanel2);
+       
         GridBagLayout gbl_draggedButtonsHere2 = new GridBagLayout();
         gbl_draggedButtonsHere2.columnWidths = new int[]{0};
         gbl_draggedButtonsHere2.rowHeights = new int[]{0};
         gbl_draggedButtonsHere2.columnWeights = new double[]{Double.MIN_VALUE};
         gbl_draggedButtonsHere2.rowWeights = new double[]{Double.MIN_VALUE};
         draggedButtonsHere2.setLayout(gbl_draggedButtonsHere2);
-        dragZones.put(draggedButtonsHere3, zonePanel3);
+        
         GridBagLayout gbl_draggedButtonsHere3 = new GridBagLayout();
         gbl_draggedButtonsHere3.columnWidths = new int[]{0};
         gbl_draggedButtonsHere3.rowHeights = new int[]{0};
         gbl_draggedButtonsHere3.columnWeights = new double[]{Double.MIN_VALUE};
         gbl_draggedButtonsHere3.rowWeights = new double[]{Double.MIN_VALUE};
         draggedButtonsHere3.setLayout(gbl_draggedButtonsHere3);
-        dragZones.put(draggedButtonsHere4, zonePanel4);
+        
         GridBagLayout gbl_draggedButtonsHere4 = new GridBagLayout();
         gbl_draggedButtonsHere4.columnWidths = new int[]{0};
         gbl_draggedButtonsHere4.rowHeights = new int[]{0};
         gbl_draggedButtonsHere4.columnWeights = new double[]{Double.MIN_VALUE};
         gbl_draggedButtonsHere4.rowWeights = new double[]{Double.MIN_VALUE};
         draggedButtonsHere4.setLayout(gbl_draggedButtonsHere4);
-        dragZones.put(draggedButtonsHere5, zonePanel5);
+        
         GridBagLayout gbl_draggedButtonsHere5 = new GridBagLayout();
         gbl_draggedButtonsHere5.columnWidths = new int[]{0};
         gbl_draggedButtonsHere5.rowHeights = new int[]{0};
