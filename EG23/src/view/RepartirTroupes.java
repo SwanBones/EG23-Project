@@ -1,11 +1,17 @@
 package view;
 
 import javax.swing.*;
+
+import model.Student;
+import model.Zones;
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.awt.event.MouseAdapter;
 
 
 public class RepartirTroupes extends JFrame {
@@ -17,8 +23,28 @@ public class RepartirTroupes extends JFrame {
     private Map<JButton, Point> buttonOrigins = new HashMap<>();
     private Map<JButton, JPanel> buttonContainers = new HashMap<>();
     private Map<JPanel, JPanel> dragZones = new HashMap<>();
+    private ArrayList<JPanel> dragZonesJpanel;
+    private ImageIcon mapIcon;
+    private JLabel mapImageLabel;
+    
+    
+    public void refreshZonePanels() {
+   /*
+    	for (int i = 0; i<5;i++) {
+    		//get JPanel
+    		//remove all JLabels inside JPanel
+    		//get zone to add (use pointer?)
+    		ArrayList<Student> zoneToAdd = Zones.getZoneArrayList(i).;//iterate through the map
+    		for (int j = 0; j<zoneToAdd.size();j++) {
+    			dragZonesJpanel.get(i).addlabel.;//add a JLabel to the JPanel
+    			label.setlabel = zoneToAdd.get(j).getName();//change the label of the JLabel
+    		}
+    	}
+    	*/
+    }
     
     private void buttonDragged(MouseEvent evt) {
+    	
         JButton button = (JButton)evt.getSource();
         button.setLocation(button.getX() + evt.getX() - button.getWidth() / 2, button.getY() + evt.getY() - button.getHeight() / 2);
     }
@@ -46,6 +72,8 @@ public class RepartirTroupes extends JFrame {
     }
     public RepartirTroupes() {
     	
+    	Zones.reset();
+    	
         setTitle("Répartissez vos troupes");
         getContentPane().setBackground(new Color(217, 179, 124));
         getContentPane().setLayout(new BorderLayout());
@@ -57,12 +85,12 @@ public class RepartirTroupes extends JFrame {
         getContentPane().add(title, BorderLayout.NORTH);
 
         //Image
-        ImageIcon imageIcon = new ImageIcon("src/pngs/plan1.png");
-        JLabel imageLabel = new JLabel(imageIcon);
+        mapIcon = new ImageIcon("src/pngs/plan1.png");
+        mapImageLabel = new JLabel(mapIcon);
         if (SCALABLE) {
-            imageLabel.setPreferredSize(new Dimension(500, 500));
+        	mapImageLabel.setPreferredSize(new Dimension(500, 500));
         }
-        getContentPane().add(imageLabel, BorderLayout.CENTER);
+        getContentPane().add(mapImageLabel, BorderLayout.CENTER);
         
         // Left Panel Wrapper so that it looks pretty
         JPanel leftPanelWrapper = new JPanel();
@@ -127,6 +155,18 @@ public class RepartirTroupes extends JFrame {
         zonePanel1.add(lblNewLabel_3, BorderLayout.NORTH);
         
         JPanel draggedButtonsHere1 = new JPanel();
+        draggedButtonsHere1.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseEntered(MouseEvent e) {
+        		mapIcon = new ImageIcon("src/pngs/1.png");
+        		mapImageLabel = new JLabel(mapIcon);
+        	}
+        	@Override
+        	public void mouseExited(MouseEvent e) {
+        		mapIcon = new ImageIcon("src/pngs/plan1.png");
+        		mapImageLabel = new JLabel(mapIcon);
+        	}
+        });
         zonePanel1.add(draggedButtonsHere1, BorderLayout.CENTER);
         
         JPanel zonePanel2 = new JPanel();
@@ -186,15 +226,46 @@ public class RepartirTroupes extends JFrame {
         // The rest of your code...
      // Define the dragZones
         dragZones.put(draggedButtonsHere1, zonePanel1);
+        GridBagLayout gbl_draggedButtonsHere1 = new GridBagLayout();
+        gbl_draggedButtonsHere1.columnWidths = new int[]{0};
+        gbl_draggedButtonsHere1.rowHeights = new int[]{0};
+        gbl_draggedButtonsHere1.columnWeights = new double[]{Double.MIN_VALUE};
+        gbl_draggedButtonsHere1.rowWeights = new double[]{Double.MIN_VALUE};
+        draggedButtonsHere1.setLayout(gbl_draggedButtonsHere1);
         dragZones.put(draggedButtonsHere2, zonePanel2);
+        GridBagLayout gbl_draggedButtonsHere2 = new GridBagLayout();
+        gbl_draggedButtonsHere2.columnWidths = new int[]{0};
+        gbl_draggedButtonsHere2.rowHeights = new int[]{0};
+        gbl_draggedButtonsHere2.columnWeights = new double[]{Double.MIN_VALUE};
+        gbl_draggedButtonsHere2.rowWeights = new double[]{Double.MIN_VALUE};
+        draggedButtonsHere2.setLayout(gbl_draggedButtonsHere2);
         dragZones.put(draggedButtonsHere3, zonePanel3);
+        GridBagLayout gbl_draggedButtonsHere3 = new GridBagLayout();
+        gbl_draggedButtonsHere3.columnWidths = new int[]{0};
+        gbl_draggedButtonsHere3.rowHeights = new int[]{0};
+        gbl_draggedButtonsHere3.columnWeights = new double[]{Double.MIN_VALUE};
+        gbl_draggedButtonsHere3.rowWeights = new double[]{Double.MIN_VALUE};
+        draggedButtonsHere3.setLayout(gbl_draggedButtonsHere3);
         dragZones.put(draggedButtonsHere4, zonePanel4);
+        GridBagLayout gbl_draggedButtonsHere4 = new GridBagLayout();
+        gbl_draggedButtonsHere4.columnWidths = new int[]{0};
+        gbl_draggedButtonsHere4.rowHeights = new int[]{0};
+        gbl_draggedButtonsHere4.columnWeights = new double[]{Double.MIN_VALUE};
+        gbl_draggedButtonsHere4.rowWeights = new double[]{Double.MIN_VALUE};
+        draggedButtonsHere4.setLayout(gbl_draggedButtonsHere4);
         dragZones.put(draggedButtonsHere5, zonePanel5);
+        GridBagLayout gbl_draggedButtonsHere5 = new GridBagLayout();
+        gbl_draggedButtonsHere5.columnWidths = new int[]{0};
+        gbl_draggedButtonsHere5.rowHeights = new int[]{0};
+        gbl_draggedButtonsHere5.columnWeights = new double[]{Double.MIN_VALUE};
+        gbl_draggedButtonsHere5.rowWeights = new double[]{Double.MIN_VALUE};
+        draggedButtonsHere5.setLayout(gbl_draggedButtonsHere5);
         
     }
   
     
     public static void main(String[] args) {
         SwingUtilities.invokeLater(RepartirTroupes::new);
+        
     }
 }
