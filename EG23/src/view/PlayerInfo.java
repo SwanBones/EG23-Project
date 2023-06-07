@@ -15,6 +15,9 @@ import model.Main;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class PlayerInfo {
 
@@ -63,20 +66,45 @@ public class PlayerInfo {
 		
 		JPanel panel_1 = new JPanel();
 		frame.getContentPane().add(panel_1, BorderLayout.CENTER);
-		panel_1.setLayout(new GridLayout(4, 2, 0, 0));
+		GridBagLayout gbl_panel_1 = new GridBagLayout();
+		
+		gbl_panel_1.columnWidths = new int[]{414, 0};
+		gbl_panel_1.rowHeights = new int[]{53, 53, 53, 53, 0};
+		gbl_panel_1.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panel_1.setLayout(gbl_panel_1);
 		
 		JLabel j1 = new JLabel("Joueur 1");
-		panel_1.add(j1);
+		GridBagConstraints gbc_j1 = new GridBagConstraints();
+		gbc_j1.fill = GridBagConstraints.BOTH;
+		gbc_j1.insets = new Insets(0, 0, 5, 0);
+		gbc_j1.gridx = 0;
+		gbc_j1.gridy = 0;
+		panel_1.add(j1, gbc_j1);
 		
 		textField = new JTextField();
-		panel_1.add(textField);
+		GridBagConstraints gbc_textField = new GridBagConstraints();
+		gbc_textField.fill = GridBagConstraints.BOTH;
+		gbc_textField.insets = new Insets(0, 0, 5, 0);
+		gbc_textField.gridx = 0;
+		gbc_textField.gridy = 1;
+		panel_1.add(textField, gbc_textField);
 		textField.setColumns(10);
 		
 		JLabel j2 = new JLabel("Joueur 2");
-		panel_1.add(j2);
+		GridBagConstraints gbc_j2 = new GridBagConstraints();
+		gbc_j2.fill = GridBagConstraints.BOTH;
+		gbc_j2.insets = new Insets(0, 0, 5, 0);
+		gbc_j2.gridx = 0;
+		gbc_j2.gridy = 2;
+		panel_1.add(j2, gbc_j2);
 		
 		textField_1 = new JTextField();
-		panel_1.add(textField_1);
+		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
+		gbc_textField_1.fill = GridBagConstraints.BOTH;
+		gbc_textField_1.gridx = 0;
+		gbc_textField_1.gridy = 3;
+		panel_1.add(textField_1, gbc_textField_1);
 		textField_1.setColumns(10);
 		
 		JPanel panel_2 = new JPanel();

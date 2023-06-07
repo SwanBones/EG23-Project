@@ -74,9 +74,8 @@ public class RepartirTroupes extends JFrame {
     	}
     	//*/
     }
-    private void buttonClicked(MouseEvent evt) {
-    	SoldierInfo soldierInfo = new SoldierInfo();
-        soldierInfo.initialize();
+    private void buttonClicked(MouseEvent evt,JButton button) {
+    	SoldierInfo soldierInfo = new SoldierInfo(button.getText());
 		// TODO Auto-generated method stub
 		
 	}
@@ -84,7 +83,7 @@ public class RepartirTroupes extends JFrame {
         JButton button = (JButton)evt.getSource();
         Point newLocation = SwingUtilities.convertPoint(button, evt.getPoint(), button.getParent());
         button.setLocation(button.getX() + evt.getX() - button.getWidth() / 2, button.getY() + evt.getY() - button.getHeight() / 2);
-    }
+    } 
 
     private void buttonReleased(MouseEvent evt) {
         JButton button = (JButton)evt.getSource();
@@ -165,7 +164,7 @@ public class RepartirTroupes extends JFrame {
         // Title
         JLabel title = new JLabel(player+": Répartissez vos troupes", SwingConstants.CENTER);
         title.setFont(new Font("Century Gothic", Font.BOLD, 24));
-        title.setForeground(new Color(73, 95, 109));
+        title.setForeground(Main.getDarkBlue());
         getContentPane().add(title, BorderLayout.NORTH);
 
       //Image
@@ -194,7 +193,7 @@ public class RepartirTroupes extends JFrame {
             JButton button = new JButton();
             button.setPreferredSize(new Dimension(50, 50));
             button.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-            button.setForeground(new Color(73, 95, 109));
+            button.setForeground(Main.getDarkBlue());
 
             String iconPath = i == 1 ? redSoldierIcon : i <= 5 ? orangeSoldierIcon : yellowSoldierIcon;
             ImageIcon icon = new ImageIcon(iconPath);
@@ -209,7 +208,7 @@ public class RepartirTroupes extends JFrame {
             button.addMouseListener(new MouseAdapter() {
             	@Override
             	public void mouseClicked(MouseEvent evt) {
-            		buttonClicked(evt);
+            		buttonClicked(evt,button);
             	}
             });
             button.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -305,7 +304,7 @@ public class RepartirTroupes extends JFrame {
         	}
         });
         nextButton.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-        nextButton.setForeground(new Color(73, 95, 109));
+        nextButton.setForeground(Main.getDarkBlue());
         getContentPane().add(nextButton, BorderLayout.SOUTH);
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -395,6 +394,7 @@ public class RepartirTroupes extends JFrame {
         draggedButtonsHere4.setLayout(new GridLayout(1, 0, 0, 0));
         dragZonesJpanel.add(draggedButtonsHere5);
         draggedButtonsHere5.setLayout(new GridLayout(1, 0, 0, 0));
+        dragZonesJpanel.add(buttonPanel);
 
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         
