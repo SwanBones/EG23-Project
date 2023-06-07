@@ -3,6 +3,7 @@ package view;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import model.CustomButton;
 import model.ImagePanel;
 import model.Main;
 import model.Student;
@@ -19,16 +20,16 @@ import java.util.Random;
 import java.awt.event.MouseAdapter;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+import javax.swing.JFrame;
 
 public class RepartirTroupes extends JFrame {
     private static final boolean SCALABLE = true;
     private static final String[] LIEUX = {"BDE", "Centre administratif", "Halle sportive", "-", "-"};
 
     
-
-    private Map<JButton, Point> buttonOrigins = new HashMap<>();
-    private Map<JButton, JPanel> buttonContainers = new HashMap<>();
+    private boolean buttonPanelIsDraggable = false;
+    private Map<CustomButton, Point> buttonOrigins = new HashMap<>();
+    private Map<CustomButton, JPanel> buttonContainers = new HashMap<>();
     //private Map<JPanel, JPanel> dragZones = new HashMap<>();
     private ArrayList<JPanel> dragZonesJpanel = new ArrayList();//TODO to set
     private JPanel mapImageLabel;
@@ -74,19 +75,19 @@ public class RepartirTroupes extends JFrame {
     	}
     	//*/
     }
-    private void buttonClicked(MouseEvent evt,JButton button) {
+    private void buttonClicked(MouseEvent evt,CustomButton button) {
     	SoldierInfo soldierInfo = new SoldierInfo(button.getText());
 		// TODO Auto-generated method stub
 		
 	}
     private void buttonDragged(MouseEvent evt) {
-        JButton button = (JButton)evt.getSource();
+        CustomButton button = (CustomButton)evt.getSource();
         Point newLocation = SwingUtilities.convertPoint(button, evt.getPoint(), button.getParent());
         button.setLocation(button.getX() + evt.getX() - button.getWidth() / 2, button.getY() + evt.getY() - button.getHeight() / 2);
     } 
 
     private void buttonReleased(MouseEvent evt) {
-        JButton button = (JButton)evt.getSource();
+        CustomButton button = (CustomButton)evt.getSource();
         JPanel buttonPanel = buttonContainers.get(button);
         Point buttonOrigin = buttonOrigins.get(button);
 
@@ -190,10 +191,9 @@ public class RepartirTroupes extends JFrame {
 
         // Buttons
         for (int i = 1; i <= 20; i++) {
-            JButton button = new JButton();
+            CustomButton button = new CustomButton("");
             button.setPreferredSize(new Dimension(50, 50));
             button.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-            button.setForeground(Main.getDarkBlue());
 
             String iconPath = i == 1 ? redSoldierIcon : i <= 5 ? orangeSoldierIcon : yellowSoldierIcon;
             ImageIcon icon = new ImageIcon(iconPath);
@@ -290,7 +290,7 @@ public class RepartirTroupes extends JFrame {
         zonePanel5.add(draggedButtonsHere5, BorderLayout.CENTER);
         
         // Next button
-        JButton nextButton = new JButton("Suivant");
+        CustomButton nextButton = new CustomButton("Suivant");
         nextButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         	if(player == Main.getPlayer1Name()) {
@@ -304,7 +304,6 @@ public class RepartirTroupes extends JFrame {
         	}
         });
         nextButton.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-        nextButton.setForeground(Main.getDarkBlue());
         getContentPane().add(nextButton, BorderLayout.SOUTH);
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -394,7 +393,10 @@ public class RepartirTroupes extends JFrame {
         draggedButtonsHere4.setLayout(new GridLayout(1, 0, 0, 0));
         dragZonesJpanel.add(draggedButtonsHere5);
         draggedButtonsHere5.setLayout(new GridLayout(1, 0, 0, 0));
-        dragZonesJpanel.add(buttonPanel);
+        if(buttonPanelIsDraggable) {
+        	dragZonesJpanel.add(buttonPanel);
+        }
+        
 
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         

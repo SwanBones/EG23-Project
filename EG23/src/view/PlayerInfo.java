@@ -10,6 +10,7 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import model.CustomButton;
 import model.Main;
 
 import java.awt.event.ActionListener;
@@ -123,7 +124,7 @@ public class PlayerInfo {
 		
 		JPanel panel_4 = new JPanel();
 		frame.getContentPane().add(panel_4, BorderLayout.EAST);
-		JButton btnNewButton = new JButton("Valider");
+		CustomButton btnNewButton = new CustomButton("Valider");
 		
 		panel_2.setLayout(new BorderLayout(0, 0));
 		panel_2.add(btnNewButton, BorderLayout.EAST);

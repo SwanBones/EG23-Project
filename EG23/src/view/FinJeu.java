@@ -14,6 +14,9 @@ import java.awt.Font;
 import javax.swing.JScrollBar;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+
+import model.CustomButton;
+
 import java.awt.FlowLayout;
 import javax.swing.AbstractListModel;
 import java.awt.event.ActionListener;
@@ -79,7 +82,7 @@ public class FinJeu {
 		lblNewLabel_1.setFont(new Font("Century Gothic", Font.BOLD, 23));
 		centerPanel.add(lblNewLabel_1, BorderLayout.CENTER);
 		
-		JButton btnNewButton = new JButton("Retourner au menu");
+		CustomButton btnNewButton = new CustomButton("Retourner au menu");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Menu menu = new Menu();

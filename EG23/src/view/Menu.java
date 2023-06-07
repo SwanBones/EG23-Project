@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
@@ -13,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import model.Main;
+import model.CustomButton;
 
 import java.awt.Font;
 import java.awt.GridBagLayout;
@@ -80,16 +80,17 @@ public class Menu {
 		gbc_lblNewLabel.gridy = 0;
 		menuPanel.add(lblNewLabel, gbc_lblNewLabel);
 		
-		JButton btnNewButton_1 = new JButton("Règles");
+		CustomButton btnNewButton_1 = new CustomButton("Règles");
 		btnNewButton_1.setBackground(Main.getDarkBlue());
 		btnNewButton_1.setForeground(Main.getLightBlue());
 		btnNewButton_1.setFont(new Font("Century Gothic", Font.PLAIN, 15));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Rules rules = new Rules();
 			}
 		});
 		
-		JButton btnNewButton = new JButton("Jouer");
+		CustomButton btnNewButton = new CustomButton("Jouer");
 		btnNewButton.setBackground(Main.getDarkBlue());
 		btnNewButton.setForeground(Main.getLightBlue());
 		btnNewButton.setFont(new Font("Century Gothic", Font.PLAIN, 15));
@@ -117,7 +118,7 @@ public class Menu {
 		
 		frame.getContentPane().add(menuPanel, BorderLayout.CENTER);
 		
-		JButton btnNewButton_2 = new JButton("Auteurs");
+		CustomButton btnNewButton_2 = new CustomButton("Auteurs");
 		btnNewButton_2.setForeground(Main.getLightBlue());
 		btnNewButton_2.setBackground(Main.getDarkBlue());
 		btnNewButton_2.setFont(new Font("Century Gothic", Font.PLAIN, 15));
@@ -183,7 +184,7 @@ public class Menu {
         nameLabel2.setHorizontalAlignment(SwingConstants.CENTER);
         authorsPanel.add(nameLabel2);
 
-        JButton backButton = new JButton("Retour");
+        CustomButton backButton = new CustomButton("Retour");
         backButton.setBackground(Main.getDarkBlue());
         backButton.setForeground(Main.getLightBlue());
         backButton.setFont(new Font("Century Gothic", Font.PLAIN, 15));

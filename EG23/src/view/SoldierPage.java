@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import model.CustomButton;
 import model.Main;
 
 public class SoldierPage {
@@ -148,8 +149,8 @@ public class SoldierPage {
         return panel;
     }
 
-    private JButton createIconButton(ImageIcon icon, String name) {
-        JButton button = new JButton(icon);
+    private CustomButton createIconButton(ImageIcon icon, String name) {
+    	CustomButton button = new CustomButton(icon);
         button.setPreferredSize(new Dimension(75, 75));
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -261,7 +262,7 @@ public class SoldierPage {
         JPanel actifPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         actifPanel.setBackground(panel.getBackground());
 
-        JButton actifButton = new JButton("Actif");
+        CustomButton actifButton = new CustomButton("Actif");
         actifButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String buttonText = actifButton.getText();
@@ -287,7 +288,7 @@ public class SoldierPage {
         JPanel appliquerPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         appliquerPanel.setBackground(panel.getBackground());
 
-        JButton appliquerButton = new JButton("Appliquer");
+        CustomButton appliquerButton = new CustomButton("Appliquer");
         appliquerPanel.add(appliquerButton);
 
         //Points restants Panel
@@ -321,7 +322,7 @@ public class SoldierPage {
     private JPanel createBottomPanel() {
     	JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
     	bottomPanel.setBackground(new Color(218, 179, 124));
-    	JButton suivantButton = new JButton("Suivant");
+    	CustomButton suivantButton = new CustomButton("Suivant");
         bottomPanel.add(suivantButton);
         suivantButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
