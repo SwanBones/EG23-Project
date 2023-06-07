@@ -10,6 +10,7 @@ import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
 
+import model.CustomButton;
 import model.Main;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -78,7 +79,7 @@ public class Rules {
 		panel_1_1.setBackground(new Color(218, 179, 124));
 		frame.getContentPane().add(panel_1_1, BorderLayout.SOUTH);
 		
-		JButton btnJaiCompris = new JButton("J'ai compris!");
+		CustomButton btnJaiCompris = new CustomButton("J'ai compris!");
 		btnJaiCompris.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();

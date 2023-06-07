@@ -4,6 +4,8 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import model.CustomButton;
+import model.CustomLabel;
+import model.CustomScrollPane;
 import model.ImagePanel;
 import model.Main;
 import model.Student;
@@ -56,20 +58,20 @@ public class RepartirTroupes extends JFrame {
 	BufferedImage mapImage4 = null;
 	BufferedImage mapImage5 = null;
     
-    Color lightGray = new Color(238, 238, 238);
+  
     
     public void refreshZonePanels() {//TEXT BASED
     	///*
     	for (int i = 0; i<5;i++) {
-    		//get JPanel and remove all JLabels inside JPanel
+    		//get JPanel and remove all CustomLabels inside JPanel
     		JPanel panelToRefresh = dragZonesJpanel.get(i);
     		panelToRefresh.removeAll();
     		//get zone to add (use pointer?)
     		ArrayList<Student> zoneToAdd = Zones.getZoneArrayList().get(i);//iterate through the arraylist
     		for (int j = 0; j<zoneToAdd.size();j++) {
-    			JLabel label = new JLabel();
-    			label.setText(zoneToAdd.get(j).getName()); //change the label of the JLabel
-    			panelToRefresh.add(label);//add a JLabel to the JPanel
+    			CustomLabel label = new CustomLabel("");
+    			label.setText(zoneToAdd.get(j).getName()); //change the label of the CustomLabel
+    			panelToRefresh.add(label);//add a CustomLabel to the JPanel
  
     		}
     	}
@@ -163,7 +165,7 @@ public class RepartirTroupes extends JFrame {
         getContentPane().setLayout(new BorderLayout());
 
         // Title
-        JLabel title = new JLabel(player+": Répartissez vos troupes", SwingConstants.CENTER);
+        CustomLabel title = new CustomLabel(player+": Répartissez vos troupes", SwingConstants.CENTER);
         title.setFont(new Font("Century Gothic", Font.BOLD, 24));
         title.setForeground(Main.getDarkBlue());
         getContentPane().add(title, BorderLayout.NORTH);
@@ -179,12 +181,15 @@ public class RepartirTroupes extends JFrame {
         // Left Panel Wrapper so that it looks pretty
         JPanel leftPanelWrapper = new JPanel();
         leftPanelWrapper.setBorder(BorderFactory.createEmptyBorder(0, 30, 0, 0));
-        leftPanelWrapper.setBackground(new Color(217, 179, 124));
+        leftPanelWrapper.setBackground(Main.getBeige());
         
         // Button Panel
         JPanel buttonPanel = new JPanel();
+        buttonPanel.setBackground(Main.getBeige());
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
-        JScrollPane scrollPane = new JScrollPane(buttonPanel);
+        CustomScrollPane scrollPane = new CustomScrollPane(buttonPanel);
+        scrollPane.setBackground(Main.getBeige());
+        scrollPane.setBorder(null);
         scrollPane.setAlignmentX(Component.LEFT_ALIGNMENT);
         scrollPane.setPreferredSize(new Dimension(200, 500));
         //add(scrollPane, BorderLayout.WEST);
@@ -236,12 +241,13 @@ public class RepartirTroupes extends JFrame {
         leftPanelWrapper.add(zoneListPanel);
         zoneListPanel.setLayout(new GridLayout(5, 0, 100, 0));
         zoneListPanel.setPreferredSize(new Dimension(200, 500));
+        zoneListPanel.setBackground(Main.getLightBeige());
         
         JPanel zonePanel1 = new JPanel();
         zoneListPanel.add(zonePanel1);
         zonePanel1.setLayout(new BorderLayout(0, 0));
         
-        JLabel lblNewLabel_3 = new JLabel("BDE");
+        CustomLabel lblNewLabel_3 = new CustomLabel("BDE");
         zonePanel1.add(lblNewLabel_3, BorderLayout.NORTH);
         
         JPanel draggedButtonsHere1 = new JPanel();
@@ -253,7 +259,7 @@ public class RepartirTroupes extends JFrame {
         zoneListPanel.add(zonePanel2);
         zonePanel2.setLayout(new BorderLayout(0, 0));
         
-        JLabel lblNewLabel = new JLabel("Quartier administratif");
+        CustomLabel lblNewLabel = new CustomLabel("Quartier administratif");
         zonePanel2.add(lblNewLabel, BorderLayout.NORTH);
         
         JPanel draggedButtonsHere2 = new JPanel();
@@ -263,7 +269,7 @@ public class RepartirTroupes extends JFrame {
         zoneListPanel.add(zonePanel3);
         zonePanel3.setLayout(new BorderLayout(0, 0));
         
-        JLabel lblHalleSportive = new JLabel("Halle sportive");
+        CustomLabel lblHalleSportive = new CustomLabel("Halle sportive");
         zonePanel3.add(lblHalleSportive, BorderLayout.NORTH);
         
         JPanel draggedButtonsHere3 = new JPanel();
@@ -273,7 +279,7 @@ public class RepartirTroupes extends JFrame {
         zoneListPanel.add(zonePanel4);
         zonePanel4.setLayout(new BorderLayout(0, 0));
         
-        JLabel lblBibliothque = new JLabel("Bibliothèque");
+        CustomLabel lblBibliothque = new CustomLabel("Bibliothèque");
         zonePanel4.add(lblBibliothque, BorderLayout.NORTH);
         
         JPanel draggedButtonsHere4 = new JPanel();
@@ -283,28 +289,23 @@ public class RepartirTroupes extends JFrame {
         zoneListPanel.add(zonePanel5);
         zonePanel5.setLayout(new BorderLayout(0, 0));
         
-        JLabel lblNewLabel_2_1 = new JLabel("Halles Industrielles");
+        CustomLabel lblNewLabel_2_1 = new CustomLabel("Halles Industrielles");
         zonePanel5.add(lblNewLabel_2_1, BorderLayout.NORTH);
         
         JPanel draggedButtonsHere5 = new JPanel();
         zonePanel5.add(draggedButtonsHere5, BorderLayout.CENTER);
-        
-        // Next button
-        CustomButton nextButton = new CustomButton("Suivant");
-        nextButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	if(player == Main.getPlayer1Name()) {
-
-        		RepartirTroupes RepartirTroupes2 = new RepartirTroupes("red",Main.getPlayer2Name());
-                dispose(); // Close the menu frame
-        	}
-        	else if (player == Main.getPlayer2Name()) {
-        			dispose();
-        		}
-        	}
-        });
-        nextButton.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-        getContentPane().add(nextButton, BorderLayout.SOUTH);
+        Color beforeHover = Main.getLightBeige();
+        Color whileHover = Main.getLightBlue();
+        draggedButtonsHere1.setBackground(beforeHover);
+        draggedButtonsHere2.setBackground(beforeHover);
+        draggedButtonsHere3.setBackground(beforeHover);
+        draggedButtonsHere4.setBackground(beforeHover);
+        draggedButtonsHere5.setBackground(beforeHover);
+        zonePanel1.setBackground(beforeHover);
+        zonePanel2.setBackground(beforeHover);
+        zonePanel3.setBackground(beforeHover);
+        zonePanel4.setBackground(beforeHover);
+        zonePanel5.setBackground(beforeHover);
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
@@ -315,72 +316,74 @@ public class RepartirTroupes extends JFrame {
             @Override
             public void mouseEntered(MouseEvent e) {
                 mapImagePanel.setImage(mapImage1);
-                draggedButtonsHere1.setBackground(Color.gray);
-                zonePanel1.setBackground(Color.gray);
+                draggedButtonsHere1.setBackground(whileHover);
+                zonePanel1.setBackground(whileHover);
             }
             @Override
             public void mouseExited(MouseEvent e) {
                 mapImagePanel.setImage(defaultMapImage);
-                draggedButtonsHere1.setBackground(lightGray);
-                zonePanel1.setBackground(lightGray);
+                draggedButtonsHere1.setBackground(beforeHover);
+                zonePanel1.setBackground(beforeHover);
             }
         });
         zonePanel2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
             	mapImagePanel.setImage(mapImage2);
-                draggedButtonsHere2.setBackground(Color.gray);
-                zonePanel2.setBackground(Color.gray);
+                draggedButtonsHere2.setBackground(whileHover);
+                zonePanel2.setBackground(whileHover);
             }
             @Override
             public void mouseExited(MouseEvent e) {
             	mapImagePanel.setImage(defaultMapImage);
-                draggedButtonsHere2.setBackground(lightGray);
-                zonePanel2.setBackground(lightGray);
+                draggedButtonsHere2.setBackground(beforeHover);
+                zonePanel2.setBackground(beforeHover);
             }
         });
         zonePanel3.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
             	mapImagePanel.setImage(mapImage3);
-                draggedButtonsHere3.setBackground(Color.gray);
-                zonePanel3.setBackground(Color.gray);
+                draggedButtonsHere3.setBackground(whileHover);
+                zonePanel3.setBackground(whileHover);
             }
             @Override
             public void mouseExited(MouseEvent e) {
             	mapImagePanel.setImage(defaultMapImage);
-                draggedButtonsHere3.setBackground(lightGray);
-                zonePanel3.setBackground(lightGray);
+                draggedButtonsHere3.setBackground(beforeHover);
+                zonePanel3.setBackground(beforeHover);
             }
         });
         zonePanel4.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
             	mapImagePanel.setImage(mapImage4);
-                draggedButtonsHere4.setBackground(Color.gray);
-                zonePanel4.setBackground(Color.gray);  
+                draggedButtonsHere4.setBackground(whileHover);
+                zonePanel4.setBackground(whileHover);  
             }
             @Override
             public void mouseExited(MouseEvent e) {
             	mapImagePanel.setImage(defaultMapImage);
-                draggedButtonsHere4.setBackground(lightGray);
-                zonePanel4.setBackground(lightGray);
+                draggedButtonsHere4.setBackground(beforeHover);
+                zonePanel4.setBackground(beforeHover);
             }
         });
         zonePanel5.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
             	mapImagePanel.setImage(mapImage5);
-                draggedButtonsHere5.setBackground(Color.gray);
-                zonePanel5.setBackground(Color.gray);
+                draggedButtonsHere5.setBackground(whileHover);
+                zonePanel5.setBackground(whileHover);
             }
             @Override
             public void mouseExited(MouseEvent e) {
             	mapImagePanel.setImage(defaultMapImage);
-                draggedButtonsHere5.setBackground(lightGray);
-                zonePanel5.setBackground(lightGray);
+                draggedButtonsHere5.setBackground(beforeHover);
+                zonePanel5.setBackground(beforeHover);
             }
         });
+
+        
         // The rest of your code...
      // Define the dragZones
         dragZonesJpanel.add(draggedButtonsHere1);
@@ -393,6 +396,19 @@ public class RepartirTroupes extends JFrame {
         draggedButtonsHere4.setLayout(new GridLayout(1, 0, 0, 0));
         dragZonesJpanel.add(draggedButtonsHere5);
         draggedButtonsHere5.setLayout(new GridLayout(1, 0, 0, 0));
+        
+        JPanel panel = new JPanel();
+        getContentPane().add(panel, BorderLayout.SOUTH);
+        panel.setLayout(new GridLayout(0, 1, 0, 0));
+        panel.setBackground(Main.getBeige());
+        JPanel panel_1 = new JPanel();
+        panel.add(panel_1);
+        panel_1.setBackground(Main.getBeige());
+        
+        
+        CustomButton nextButton = new CustomButton("Suivant");
+        nextButton.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+        panel.add(nextButton);
         if(buttonPanelIsDraggable) {
         	dragZonesJpanel.add(buttonPanel);
         }

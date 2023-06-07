@@ -5,7 +5,6 @@ import java.awt.EventQueue;
 import javax.swing.ImageIcon;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -16,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
 import model.CustomButton;
+import model.CustomLabel;
 
 import java.awt.FlowLayout;
 import javax.swing.AbstractListModel;
@@ -65,7 +65,7 @@ public class FinJeu {
 		topPanel.setBackground(new Color(218, 179, 124));
 		frame.getContentPane().add(topPanel, BorderLayout.NORTH);
 		
-		JLabel lblNewLabel = new JLabel("FIN DU JEU");
+		CustomLabel lblNewLabel = new CustomLabel("FIN DU JEU");
 		lblNewLabel.setForeground(new Color(73, 95, 110));
 		lblNewLabel.setFont(new Font("Century Gothic", Font.BOLD, 23));
 		topPanel.add(lblNewLabel);
@@ -76,7 +76,7 @@ public class FinJeu {
 		frame.getContentPane().add(centerPanel, BorderLayout.CENTER);
 		ImageIcon map = new ImageIcon("src/pngs/plan_utt.png");
 		
-		JLabel lblNewLabel_1 = new JLabel("Le Joueur 2 A Gagné!");
+		CustomLabel lblNewLabel_1 = new CustomLabel("Le Joueur 2 A Gagné!");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setForeground(new Color(73, 95, 110));
 		lblNewLabel_1.setFont(new Font("Century Gothic", Font.BOLD, 23));

@@ -21,6 +21,7 @@ public class ImagePanel extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
+    	super.setBackground(Main.getBeige());
         super.paintComponent(g);
         
         // Calculate the appropriate size and position for the image to keep its aspect ratio.

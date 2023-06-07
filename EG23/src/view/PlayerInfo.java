@@ -11,14 +11,19 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import model.CustomButton;
+import model.CustomTextField;
 import model.Main;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.RenderingHints;
+import java.awt.Color;
 
 public class PlayerInfo {
 
@@ -64,15 +69,17 @@ public class PlayerInfo {
 		
 		JLabel lblNewLabel = new JLabel("Entrez vos noms");
 		panel.add(lblNewLabel);
+		panel.setBackground(Main.getLightBeige());
 		
 		JPanel panel_1 = new JPanel();
 		frame.getContentPane().add(panel_1, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
+		panel_1.setBackground(Main.getBeige());
 		
 		gbl_panel_1.columnWidths = new int[]{414, 0};
-		gbl_panel_1.rowHeights = new int[]{53, 53, 53, 53, 0};
-		gbl_panel_1.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_1.rowHeights = new int[]{53, 53, 53, 53, 0, 0};
+		gbl_panel_1.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
 		JLabel j1 = new JLabel("Joueur 1");
@@ -83,7 +90,7 @@ public class PlayerInfo {
 		gbc_j1.gridy = 0;
 		panel_1.add(j1, gbc_j1);
 		
-		textField = new JTextField();
+		textField = new CustomTextField();
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.fill = GridBagConstraints.BOTH;
 		gbc_textField.insets = new Insets(0, 0, 5, 0);
@@ -100,36 +107,46 @@ public class PlayerInfo {
 		gbc_j2.gridy = 2;
 		panel_1.add(j2, gbc_j2);
 		
-		textField_1 = new JTextField();
+		textField_1 = new CustomTextField();
 		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
+		gbc_textField_1.insets = new Insets(0, 0, 5, 0);
 		gbc_textField_1.fill = GridBagConstraints.BOTH;
 		gbc_textField_1.gridx = 0;
 		gbc_textField_1.gridy = 3;
 		panel_1.add(textField_1, gbc_textField_1);
 		textField_1.setColumns(10);
 		
+		JPanel panel_6 = new JPanel();
+		GridBagConstraints gbc_panel_6 = new GridBagConstraints();
+		gbc_panel_6.fill = GridBagConstraints.BOTH;
+		gbc_panel_6.gridx = 0;
+		gbc_panel_6.gridy = 4;
+		panel_1.add(panel_6, gbc_panel_6);
+		
 		JPanel panel_2 = new JPanel();
 		frame.getContentPane().add(panel_2, BorderLayout.SOUTH);
+		panel_2.setBackground(Main.getBeige());
 		
 		
 		JPanel panel_5 = new JPanel();
 		panel_2.add(panel_5, BorderLayout.CENTER);
 		panel_5.setLayout(new GridLayout(0, 1, 0, 0));
-		
-		JLabel label = new JLabel("New label");
-		panel_5.add(label);
+		panel_5.setBackground(Main.getLightBeige());
 		
 		JPanel panel_3 = new JPanel();
 		frame.getContentPane().add(panel_3, BorderLayout.WEST);
+		panel_3.setBackground(Main.getBeige());
 		
 		JPanel panel_4 = new JPanel();
 		frame.getContentPane().add(panel_4, BorderLayout.EAST);
 		CustomButton btnNewButton = new CustomButton("Valider");
+		panel_4.setBackground(Main.getBeige());
 		
 		panel_2.setLayout(new BorderLayout(0, 0));
 		panel_2.add(btnNewButton, BorderLayout.EAST);
 		
 		JLabel errorLabel = new JLabel("");
+		errorLabel.setBackground(new Color(192, 192, 192));
 		panel_2.add(errorLabel, BorderLayout.CENTER);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
