@@ -8,7 +8,13 @@ public class SoldierPage {
     private JFrame frame;
     private JLabel soldierIcon;
     private JLabel soldierName;
-
+    
+    String redSoldierIcon = "src/pngs/soldierIcons/red_icon.png";
+    String orangeSoldierIcon = "src/pngs/soldierIcons/orange_icon.png";
+    String yellowSoldierIcon = "src/pngs/soldierIcons/yellow_icon.png";
+    int width = 500;
+    int height = 500;
+    
     public static void main(java.lang.String[] args) {
         SwingUtilities.invokeLater(() -> {
             SoldierPage window = new SoldierPage();
@@ -28,7 +34,9 @@ public class SoldierPage {
         int height = (int) screenSize.getHeight();
         frame.setSize(width, height);
     }
-
+    /**
+     * @wbp.parser.entryPoint
+     */
     public void initialize() {
     	
     	// font color
@@ -46,6 +54,9 @@ public class SoldierPage {
 
         JPanel topPanel = createTopPanel();
         frame.getContentPane().add(topPanel, BorderLayout.NORTH);
+        
+        JPanel bottomPanel = createBottomPanel();
+        frame.getContentPane().add(bottomPanel, BorderLayout.SOUTH);
 
         soldierIcon = new JLabel();
         soldierIcon.setPreferredSize(new Dimension(75, 75));
@@ -67,7 +78,8 @@ public class SoldierPage {
         titlePanel.setBackground(frame.getContentPane().getBackground());
         titlePanel.add(lblTitle);
         paddedLeftPanel.add(titlePanel, BorderLayout.SOUTH);
-        
+        frame.setSize(width, height);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setVisible(true);
     }
 
@@ -88,12 +100,12 @@ public class SoldierPage {
         gbc.anchor = GridBagConstraints.PAGE_START;
 
         //Naming the icons
-        ImageIcon redIcon = createScaledIcon("src/pngs/red_icon.png", iconSize);
+        ImageIcon redIcon = createScaledIcon(redSoldierIcon, iconSize);
         panel.add(createIconButton(redIcon, "Maître de Guerre"), gbc);
 
         for (int col = 1; col<numCols; col++) {
         	gbc.gridx++;
-        	ImageIcon orangeIcon = createScaledIcon("src/pngs/orange_icon.png", iconSize);
+        	ImageIcon orangeIcon = createScaledIcon(orangeSoldierIcon, iconSize);
         	panel.add(createIconButton(orangeIcon, "Soldat élite "+ col), gbc);
         }
       
@@ -107,10 +119,10 @@ public class SoldierPage {
                 String name;
 
                 if (row == 1 && col == 0) {
-                    icon = createScaledIcon("src/pngs/orange_icon.png", iconSize);
+                    icon = createScaledIcon(orangeSoldierIcon, iconSize);
                     name = "Soldat élite 4";
                 } else {
-                    icon = createScaledIcon("src/pngs/yellow_icon.png", iconSize);
+                    icon = createScaledIcon(yellowSoldierIcon, iconSize);
                     name = "Soldat "+ nb_soldier;
                     nb_soldier++;
                 }
@@ -202,6 +214,7 @@ public class SoldierPage {
                     textField.setText(String.valueOf(source.getValue()));
                 }
             });
+            
         }
 
         panel.add(topPanel, BorderLayout.NORTH);
@@ -284,7 +297,29 @@ public class SoldierPage {
     private JPanel createTopPanel() {
         JPanel panel = new JPanel();
         panel.setBackground(new Color(218, 179, 124));
+        
+        JLabel joueurLabel = new JLabel("Joueur 1");
+        joueurLabel.setFont(new Font("Century Gothic", Font.BOLD, 30));
+        joueurLabel.setForeground(Color.WHITE);
+        joueurLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(joueurLabel);
+        
         return panel;
+    }
+    
+    private JPanel createBottomPanel() {
+    	JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+    	bottomPanel.setBackground(new Color(218, 179, 124));
+    	JButton suivantButton = new JButton("Suivant");
+        bottomPanel.add(suivantButton);
+        suivantButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		RepartirTroupes RepartirTroupes2 = new RepartirTroupes("blue","Joueur 1");
+                frame.dispose(); // Close the menu frame
+        	}
+        });
+        	
+        return bottomPanel;
     }
 
     // To leave some space on the sides of the panels

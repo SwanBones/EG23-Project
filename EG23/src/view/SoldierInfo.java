@@ -33,6 +33,7 @@ public class SoldierInfo {
 	public SoldierInfo() {
 		
 		initialize();
+		
 	}
 
 	/**
@@ -46,7 +47,7 @@ public class SoldierInfo {
 		frame.getContentPane().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseExited(MouseEvent e) {
-				System.exit(0);
+				frame.dispose();
 			}
 			
 		});
@@ -54,7 +55,9 @@ public class SoldierInfo {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//soldierInfoWindowList.add(this);
 
-		frame.setUndecorated(true);
+		//frame.setUndecorated(true);
+
+		frame.setVisible(true);
 	}
 	
 	

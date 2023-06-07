@@ -1,17 +1,23 @@
 package view;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import model.ImagePanel;
 import model.Student;
 import model.Zones;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.awt.event.MouseAdapter;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class RepartirTroupes extends JFrame {
@@ -24,9 +30,31 @@ public class RepartirTroupes extends JFrame {
     private Map<JButton, JPanel> buttonContainers = new HashMap<>();
     //private Map<JPanel, JPanel> dragZones = new HashMap<>();
     private ArrayList<JPanel> dragZonesJpanel = new ArrayList();//TODO to set
-    private ImageIcon mapIcon;
-    private JLabel mapImageLabel;
+    private JPanel mapImageLabel;
     
+    //map
+    ImagePanel mapImagePanel;
+    String defaultMapIcon = "src/pngs/maps/default.png";
+    
+    String mapIcon1 = "src/pngs/maps/1-gray.png";
+    String mapIcon2 = "src/pngs/maps/2-gray.png";
+    String mapIcon3 = "src/pngs/maps/3-gray.png";
+    String mapIcon4 = "src/pngs/maps/4-gray.png";
+    String mapIcon5 = "src/pngs/maps/5-gray.png";
+    
+    String redSoldierIcon = "src/pngs/soldierIcons/red_icon.png";
+    String orangeSoldierIcon = "src/pngs/soldierIcons/orange_icon.png";
+    String yellowSoldierIcon = "src/pngs/soldierIcons/yellow_icon.png";
+    
+    
+    BufferedImage defaultMapImage = null;
+	BufferedImage mapImage1 = null;
+	BufferedImage mapImage2 = null;
+	BufferedImage mapImage3 = null;
+	BufferedImage mapImage4 = null;
+	BufferedImage mapImage5 = null;
+    
+    Color lightGray = new Color(238, 238, 238);
     
     public void refreshZonePanels() {//TEXT BASED
     	///*
@@ -47,7 +75,6 @@ public class RepartirTroupes extends JFrame {
     }
     private void buttonClicked(MouseEvent evt) {
     	SoldierInfo soldierInfo = new SoldierInfo();
-    	
         soldierInfo.initialize();
 		// TODO Auto-generated method stub
 		
@@ -88,9 +115,46 @@ public class RepartirTroupes extends JFrame {
         this.repaint();
     }
 
-
-    public RepartirTroupes() {
-    	
+    public RepartirTroupes(String color, String player) {
+    	initialize(color, player);
+    }
+    public void initialize(String color, String player) {
+    	 mapIcon1 = "src/pngs/maps/1-"+color+".png";
+    	 mapIcon2 = "src/pngs/maps/2-"+color+".png";
+    	 mapIcon3 = "src/pngs/maps/3-"+color+".png";
+    	 mapIcon4 = "src/pngs/maps/4-"+color+".png";
+    	 mapIcon5 = "src/pngs/maps/5-"+color+".png";
+    	    
+    	try {
+    	defaultMapImage = ImageIO.read(new File(defaultMapIcon));
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    	}
+    	try {
+        mapImage1 = ImageIO.read(new File(mapIcon1));
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    	}
+    	try {
+        mapImage2 = ImageIO.read(new File(mapIcon2));
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    	}
+    	try {
+        mapImage3 = ImageIO.read(new File(mapIcon3));
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    	}
+    	try {
+    	mapImage4 = ImageIO.read(new File(mapIcon4));
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    	}
+    	try {
+        mapImage5 = ImageIO.read(new File(mapIcon5));
+		}catch(Exception e) {
+		e.printStackTrace();
+			}
     	Zones.reset();
     	
         setTitle("Répartissez vos troupes");
@@ -98,18 +162,18 @@ public class RepartirTroupes extends JFrame {
         getContentPane().setLayout(new BorderLayout());
 
         // Title
-        JLabel title = new JLabel("Répartissez vos troupes", SwingConstants.CENTER);
+        JLabel title = new JLabel(player+": Répartissez vos troupes", SwingConstants.CENTER);
         title.setFont(new Font("Century Gothic", Font.BOLD, 24));
         title.setForeground(new Color(73, 95, 109));
         getContentPane().add(title, BorderLayout.NORTH);
 
-        //Image
-        mapIcon = new ImageIcon("src/pngs/plan1.png");
-        mapImageLabel = new JLabel(mapIcon);
+      //Image
+        mapImagePanel= new ImagePanel(defaultMapImage);
         if (SCALABLE) {
-        	mapImageLabel.setPreferredSize(new Dimension(500, 500));
+            mapImagePanel.setPreferredSize(new Dimension(500, 500));
         }
-        getContentPane().add(mapImageLabel, BorderLayout.CENTER);
+        getContentPane().add(mapImagePanel, BorderLayout.CENTER);
+
         
         // Left Panel Wrapper so that it looks pretty
         JPanel leftPanelWrapper = new JPanel();
@@ -131,7 +195,7 @@ public class RepartirTroupes extends JFrame {
             button.setFont(new Font("Century Gothic", Font.PLAIN, 12));
             button.setForeground(new Color(73, 95, 109));
 
-            String iconPath = i == 1 ? "src/pngs/red_icon.png" : i <= 5 ? "src/pngs/orange_icon.png" : "src/pngs/yellow_icon.png";
+            String iconPath = i == 1 ? redSoldierIcon : i <= 5 ? orangeSoldierIcon : yellowSoldierIcon;
             ImageIcon icon = new ImageIcon(iconPath);
             Image image = icon.getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
             button.setIcon(new ImageIcon(image));
@@ -146,7 +210,6 @@ public class RepartirTroupes extends JFrame {
             	public void mouseClicked(MouseEvent evt) {
             		buttonClicked(evt);
             	}
-
             });
             button.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
                 public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -228,97 +291,95 @@ public class RepartirTroupes extends JFrame {
         
         // Next button
         JButton nextButton = new JButton("Suivant");
+        nextButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	if(player == "Joueur 1") {
+
+        		RepartirTroupes RepartirTroupes2 = new RepartirTroupes("red","Joueur 2");
+                dispose(); // Close the menu frame
+        	}
+        	else if (player == "Joueur 2") {
+        			dispose();
+        		}
+        	}
+        });
         nextButton.setFont(new Font("Century Gothic", Font.PLAIN, 12));
         nextButton.setForeground(new Color(73, 95, 109));
         getContentPane().add(nextButton, BorderLayout.SOUTH);
-        
-        JPanel panel = new JPanel();
-        getContentPane().add(panel, BorderLayout.EAST);
-        panel.setLayout(new GridLayout(1, 0, 0, 0));
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setVisible(true);
         
         //zone hovering
-        draggedButtonsHere1.addMouseListener(new MouseAdapter() {
+        zonePanel1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                mapIcon = new ImageIcon("src/pngs/1.png");
-                mapImageLabel.setIcon(mapIcon);
+                mapImagePanel.setImage(mapImage1);
                 draggedButtonsHere1.setBackground(Color.gray);
                 zonePanel1.setBackground(Color.gray);
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                mapIcon = new ImageIcon("src/pngs/plan1.png");
-                mapImageLabel.setIcon(mapIcon);
-                draggedButtonsHere1.setBackground(new Color(238, 238, 238));
-                zonePanel1.setBackground(new Color(238, 238, 238));
+                mapImagePanel.setImage(defaultMapImage);
+                draggedButtonsHere1.setBackground(lightGray);
+                zonePanel1.setBackground(lightGray);
             }
         });
-        draggedButtonsHere2.addMouseListener(new MouseAdapter() {
+        zonePanel2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                mapIcon = new ImageIcon("src/pngs/2.png");
-                mapImageLabel.setIcon(mapIcon);
+            	mapImagePanel.setImage(mapImage2);
                 draggedButtonsHere2.setBackground(Color.gray);
                 zonePanel2.setBackground(Color.gray);
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                mapIcon = new ImageIcon("src/pngs/plan1.png");
-                mapImageLabel.setIcon(mapIcon);
-                draggedButtonsHere2.setBackground(new Color(238, 238, 238));
-                zonePanel2.setBackground(new Color(238, 238, 238));
+            	mapImagePanel.setImage(defaultMapImage);
+                draggedButtonsHere2.setBackground(lightGray);
+                zonePanel2.setBackground(lightGray);
             }
         });
-        draggedButtonsHere3.addMouseListener(new MouseAdapter() {
+        zonePanel3.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                mapIcon = new ImageIcon("src/pngs/3.png");
-                mapImageLabel.setIcon(mapIcon);
+            	mapImagePanel.setImage(mapImage3);
                 draggedButtonsHere3.setBackground(Color.gray);
                 zonePanel3.setBackground(Color.gray);
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                mapIcon = new ImageIcon("src/pngs/plan.png");
-                mapImageLabel.setIcon(mapIcon);
-                draggedButtonsHere3.setBackground(new Color(238, 238, 238));
-                zonePanel3.setBackground(new Color(238, 238, 238));
+            	mapImagePanel.setImage(defaultMapImage);
+                draggedButtonsHere3.setBackground(lightGray);
+                zonePanel3.setBackground(lightGray);
             }
         });
-        draggedButtonsHere4.addMouseListener(new MouseAdapter() {
+        zonePanel4.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                mapIcon = new ImageIcon("src/pngs/4.png");
-                mapImageLabel.setIcon(mapIcon);
+            	mapImagePanel.setImage(mapImage4);
                 draggedButtonsHere4.setBackground(Color.gray);
                 zonePanel4.setBackground(Color.gray);  
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                mapIcon = new ImageIcon("src/pngs/plan1.png");
-                mapImageLabel.setIcon(mapIcon);
-                draggedButtonsHere4.setBackground(new Color(238, 238, 238));
-                zonePanel4.setBackground(new Color(238, 238, 238));
+            	mapImagePanel.setImage(defaultMapImage);
+                draggedButtonsHere4.setBackground(lightGray);
+                zonePanel4.setBackground(lightGray);
             }
         });
-        draggedButtonsHere5.addMouseListener(new MouseAdapter() {
+        zonePanel5.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                mapIcon = new ImageIcon("src/pngs/5.png");
-                mapImageLabel.setIcon(mapIcon);
+            	mapImagePanel.setImage(mapImage5);
                 draggedButtonsHere5.setBackground(Color.gray);
                 zonePanel5.setBackground(Color.gray);
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                mapIcon = new ImageIcon("src/pngs/plan1.png");
-                mapImageLabel.setIcon(mapIcon);
-                draggedButtonsHere5.setBackground(new Color(238, 238, 238));
-                zonePanel5.setBackground(new Color(238, 238, 238));
+            	mapImagePanel.setImage(defaultMapImage);
+                draggedButtonsHere5.setBackground(lightGray);
+                zonePanel5.setBackground(lightGray);
             }
         });
         // The rest of your code...
@@ -333,12 +394,14 @@ public class RepartirTroupes extends JFrame {
         draggedButtonsHere4.setLayout(new GridLayout(1, 0, 0, 0));
         dragZonesJpanel.add(draggedButtonsHere5);
         draggedButtonsHere5.setLayout(new GridLayout(1, 0, 0, 0));
+
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         
     }
   
     
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(RepartirTroupes::new);
+    	SwingUtilities.invokeLater(() -> new RepartirTroupes("blue","Joueur 1"));
         
     }
 }
