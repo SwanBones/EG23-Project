@@ -17,6 +17,8 @@ public class SoldierPage {
     int width = 500;
     int height = 500;
     
+    JLabel joueurLabel;
+    
     String usingPlayer;
     
     public static void main(java.lang.String[] args) {
@@ -307,7 +309,7 @@ public class SoldierPage {
         JPanel panel = new JPanel();
         panel.setBackground(new Color(218, 179, 124));
         
-        JLabel joueurLabel = new JLabel(Main.getPlayer1Name()+": Paramétrez vos troupes");
+        joueurLabel = new JLabel(Main.getPlayer1Name()+": Paramétrez vos troupes");
         joueurLabel.setFont(new Font("Century Gothic", Font.BOLD, 30));
         joueurLabel.setForeground(Color.WHITE);
         joueurLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -324,8 +326,8 @@ public class SoldierPage {
         suivantButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		if (usingPlayer.equals(Main.getPlayer1Name())) {
-        			SoldierPage soldierPage = new SoldierPage(Main.getPlayer2Name());
-				    frame.dispose(); // Close the menu frame
+        			joueurLabel.setText(Main.getPlayer2Name()+": Paramétrez vos troupes");
+        			usingPlayer = Main.getPlayer2Name();
         		}else {
         		RepartirTroupes RepartirTroupes2 = new RepartirTroupes("blue",Main.getPlayer1Name());
                 frame.dispose(); // Close the menu frame

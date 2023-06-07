@@ -100,7 +100,7 @@ public class PlayerInfo {
 		panel_2.setLayout(new BorderLayout(0, 0));
 		panel_2.add(btnNewButton, BorderLayout.EAST);
 		
-		JLabel errorLabel = new JLabel("New label");
+		JLabel errorLabel = new JLabel("");
 		panel_2.add(errorLabel, BorderLayout.CENTER);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
