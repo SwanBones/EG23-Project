@@ -4,6 +4,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import model.ImagePanel;
+import model.Main;
 import model.Student;
 import model.Zones;
 
@@ -293,12 +294,12 @@ public class RepartirTroupes extends JFrame {
         JButton nextButton = new JButton("Suivant");
         nextButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        	if(player == "Joueur 1") {
+        	if(player == Main.getPlayer1Name()) {
 
-        		RepartirTroupes RepartirTroupes2 = new RepartirTroupes("red","Joueur 2");
+        		RepartirTroupes RepartirTroupes2 = new RepartirTroupes("red",Main.getPlayer2Name());
                 dispose(); // Close the menu frame
         	}
-        	else if (player == "Joueur 2") {
+        	else if (player == Main.getPlayer2Name()) {
         			dispose();
         		}
         	}
@@ -401,7 +402,9 @@ public class RepartirTroupes extends JFrame {
   
     
     public static void main(String[] args) {
-    	SwingUtilities.invokeLater(() -> new RepartirTroupes("blue","Joueur 1"));
+    	Main.setPlayer1Name("j1");
+    	Main.setPlayer2Name("j2");
+    	SwingUtilities.invokeLater(() -> new RepartirTroupes("blue",Main.getPlayer1Name()));
         
     }
 }

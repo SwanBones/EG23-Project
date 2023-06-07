@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import model.Main;
+
 public class SoldierPage {
     private JFrame frame;
     private JLabel soldierIcon;
@@ -15,15 +17,21 @@ public class SoldierPage {
     int width = 500;
     int height = 500;
     
+    String usingPlayer;
+    
     public static void main(java.lang.String[] args) {
+    	Main.setPlayer1Name("1");
+    	Main.setPlayer2Name("2");
         SwingUtilities.invokeLater(() -> {
-            SoldierPage window = new SoldierPage();
-            window.initialize();
+            SoldierPage window = new SoldierPage(Main.getPlayer1Name());
+           
         });
     }
 
-    public SoldierPage() {
+    public SoldierPage(String player) {
+    	usingPlayer = player;
         frame = new JFrame();
+        frame.setVisible(true);
         frame.getContentPane().setBackground(new Color(217, 179, 124));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(new BorderLayout());
@@ -33,6 +41,7 @@ public class SoldierPage {
         int width = (int) screenSize.getWidth();
         int height = (int) screenSize.getHeight();
         frame.setSize(width, height);
+        initialize();
     }
     /**
      * @wbp.parser.entryPoint
@@ -298,7 +307,7 @@ public class SoldierPage {
         JPanel panel = new JPanel();
         panel.setBackground(new Color(218, 179, 124));
         
-        JLabel joueurLabel = new JLabel("Joueur 1");
+        JLabel joueurLabel = new JLabel(Main.getPlayer1Name()+": Paramétrez vos troupes");
         joueurLabel.setFont(new Font("Century Gothic", Font.BOLD, 30));
         joueurLabel.setForeground(Color.WHITE);
         joueurLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -314,8 +323,13 @@ public class SoldierPage {
         bottomPanel.add(suivantButton);
         suivantButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		RepartirTroupes RepartirTroupes2 = new RepartirTroupes("blue","Joueur 1");
+        		if (usingPlayer.equals(Main.getPlayer1Name())) {
+        			SoldierPage soldierPage = new SoldierPage(Main.getPlayer2Name());
+				    frame.dispose(); // Close the menu frame
+        		}else {
+        		RepartirTroupes RepartirTroupes2 = new RepartirTroupes("blue",Main.getPlayer1Name());
                 frame.dispose(); // Close the menu frame
+        		}
         	}
         });
         	

@@ -11,6 +11,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import model.Main;
+
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -72,8 +75,8 @@ public class Menu {
 		// Action listener for the "Jouer" button
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                SoldierPage soldierPage = new SoldierPage();
-                soldierPage.initialize();
+            	PlayerInfo playerInfo = new PlayerInfo();
+            	playerInfo.initialize();
                 frame.dispose(); // Close the menu frame
             }
         });
