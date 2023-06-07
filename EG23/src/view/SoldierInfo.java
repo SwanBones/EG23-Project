@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 
@@ -19,7 +20,7 @@ import model.Main;
 
 import java.awt.Color;
 import java.awt.BorderLayout;
-import javax.swing.JLabel;
+import model.CustomLabel;
 
 public class SoldierInfo {
 	//private ArrayList<soldierInfo> soldierInfoWindowList = new ArrayList();
@@ -101,15 +102,16 @@ public class SoldierInfo {
 		panel.setBackground(Main.getBeige());
 		frame.getContentPane().add(panel, BorderLayout.NORTH);
 		
-		JLabel lblNewLabel = new JLabel(soldierName);
+		CustomLabel lblNewLabel = new CustomLabel(soldierName);
 		panel.add(lblNewLabel);
+		lblNewLabel.setFont(new Font("Century Gothic", Font.BOLD, 14));
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Main.getLightBeige());
 		frame.getContentPane().add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JLabel lblNewLabel_1 = new JLabel("Rôle : Soldat Classique");
+		CustomLabel lblNewLabel_1 = new CustomLabel(" Rôle : Soldat Classique");
 		if (soldierNumber == 1) {
 			lblNewLabel_1.setText("Rôle : Maitre de guerre");
 		}
@@ -118,22 +120,22 @@ public class SoldierInfo {
 		}
 		panel_1.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Force : 2");
+		CustomLabel lblNewLabel_1_1 = new CustomLabel(" Force : 2");
 		panel_1.add(lblNewLabel_1_1);
 		
-		JLabel lblNewLabel_1_2 = new JLabel("Dextérité : 2");
+		CustomLabel lblNewLabel_1_2 = new CustomLabel(" Dextérité : 2");
 		panel_1.add(lblNewLabel_1_2);
 		
-		JLabel lblNewLabel_1_3 = new JLabel("Résistance : 2");
+		CustomLabel lblNewLabel_1_3 = new CustomLabel(" Résistance : 2");
 		panel_1.add(lblNewLabel_1_3);
 		
-		JLabel lblNewLabel_1_4 = new JLabel("Constitution: 2");
+		CustomLabel lblNewLabel_1_4 = new CustomLabel(" Constitution: 2");
 		panel_1.add(lblNewLabel_1_4);
 		
-		JLabel lblNewLabel_1_4_1 = new JLabel("Initiative : 2");
+		CustomLabel lblNewLabel_1_4_1 = new CustomLabel(" Initiative : 2");
 		panel_1.add(lblNewLabel_1_4_1);
 		
-		JLabel lblNewLabel_1_4_1_1 = new JLabel("IA: "+ aiList.get(new Random().nextInt(3)));
+		CustomLabel lblNewLabel_1_4_1_1 = new CustomLabel(" IA: "+ aiList.get(new Random().nextInt(3)));
 		panel_1.add(lblNewLabel_1_4_1_1);
 		//soldierInfoWindowList.add(this);
 
