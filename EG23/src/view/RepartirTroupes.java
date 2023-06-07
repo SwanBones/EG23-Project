@@ -407,7 +407,16 @@ public class RepartirTroupes extends JFrame {
         
         
         CustomButton nextButton = new CustomButton("Suivant");
-        nextButton.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+        nextButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		if (player.equals(Main.getPlayer1Name())) {
+        			RepartirTroupes repartirtroupes2 = new RepartirTroupes("red",Main.getPlayer2Name());
+        			dispose();
+        		}else {
+        			dispose();
+        		}
+        	}
+        });
         panel.add(nextButton);
         if(buttonPanelIsDraggable) {
         	dragZonesJpanel.add(buttonPanel);
