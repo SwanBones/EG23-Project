@@ -3,8 +3,10 @@ package view;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import model.CustomBlueButton;
 import model.CustomButton;
 import model.CustomLabel;
+import model.CustomRedButton;
 import model.CustomScrollPane;
 import model.ImagePanel;
 import model.Main;
@@ -197,7 +199,12 @@ public class RepartirTroupes extends JFrame {
 
         // Buttons
         for (int i = 1; i <= 20; i++) {
-            CustomButton button = new CustomButton("");
+        	CustomButton button;
+            if (player.equals(Main.getPlayer1Name())) {
+            	 button = new CustomBlueButton("");
+            }else {
+            	button = new CustomRedButton("");
+            }
             button.setPreferredSize(new Dimension(50, 50));
             button.setFont(new Font("Century Gothic", Font.PLAIN, 12));
 

@@ -3,6 +3,18 @@ package model;
 import java.awt.Color;
 
 public class Main {
+	public static Color getRed() {
+		return red;
+	}
+	public static void setRed(Color red) {
+		Main.red = red;
+	}
+	public static Color getBlue() {
+		return blue;
+	}
+	public static void setBlue(Color blue) {
+		Main.blue = blue;
+	}
 	private static String player1Name;
 	private static String player2Name;
 	
@@ -11,6 +23,23 @@ public class Main {
 	private static Color darkBlue = new Color(164, 150, 123);
 	private static Color lightBlue = new Color(217, 209, 137);
 		
+	private static Color red = new Color(159, 1, 1);
+	private static Color pressedRed = new Color(128, 0, 0);
+	
+	public static Color getPressedRed() {
+		return pressedRed;
+	}
+	public static void setPressedRed(Color pressedRed) {
+		Main.pressedRed = pressedRed;
+	}
+	public static Color getPressedBlue() {
+		return pressedBlue;
+	}
+	public static void setPressedBlue(Color pressedBlue) {
+		Main.pressedBlue = pressedBlue;
+	}
+	private static Color blue = new Color(36, 66, 134);
+	private static Color pressedBlue = new Color(30, 55, 111);
 	
 	//private static Color beige = new Color(218, 179, 124);
 	//private static Color lightBeige = new Color(243, 220, 188);
