@@ -240,6 +240,7 @@ public class Melee2 extends JFrame {
         	@Override
         	public void actionPerformed(ActionEvent e) {
         		Treve window = new Treve(2);
+        		window.frame.setVisible(true);
         		dispose();
         	}
         });

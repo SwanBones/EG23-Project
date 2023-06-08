@@ -24,7 +24,7 @@ import model.CustomLabel;
 
 public class SoldierInfo {
 	//private ArrayList<soldierInfo> soldierInfoWindowList = new ArrayList();
-	private JFrame frame;
+	JFrame frame;
 
 	/**
 	 * Launch the application.

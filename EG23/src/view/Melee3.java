@@ -233,6 +233,7 @@ public class Melee3 extends JFrame {
         	@Override
         	public void actionPerformed(ActionEvent e) {
         		Treve window = new Treve(3);
+        		window.frame.setVisible(true);
         		dispose();
         	}
         });

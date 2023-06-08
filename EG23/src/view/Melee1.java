@@ -239,6 +239,7 @@ public class Melee1 extends JFrame {
         	@Override
         	public void actionPerformed(ActionEvent e) {
         		Treve window = new Treve(1);
+        		window.frame.setVisible(true);
         		dispose();
         	}
         });
@@ -252,6 +253,7 @@ public class Melee1 extends JFrame {
   
     private void buttonClicked(MouseEvent evt,CustomButton button) {
     	SoldierInfo soldierInfo = new SoldierInfo(button.getText());
+    	
 		// TODO Auto-generated method stub
 		
 	}

@@ -22,7 +22,7 @@ import java.awt.event.ActionEvent;
 
 public class Treve {
 
-	private JFrame frame;
+	JFrame frame;
 	private int step;
 	private String player;
 	private String controlledSpace;
