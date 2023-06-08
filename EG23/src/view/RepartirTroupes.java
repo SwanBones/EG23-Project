@@ -235,8 +235,6 @@ public class RepartirTroupes extends JFrame {
                 }
             });
             
-
-            // The rest of your code...
         }
         leftPanelWrapper.setLayout(new BoxLayout(leftPanelWrapper, BoxLayout.X_AXIS));
         
@@ -414,11 +412,31 @@ public class RepartirTroupes extends JFrame {
         panel_1.setBackground(Main.getBeige());
         
         
+        //Keeping info on buttons
+        /*
+        Component[] draggedButtons = new Component[5];
+        
+        JPanel Buttons1 = buttonContainers.get(draggedButtonsHere1);
+        JPanel Buttons2 = buttonContainers.get(draggedButtonsHere2);
+        JPanel Buttons3 = buttonContainers.get(draggedButtonsHere3);
+        JPanel Buttons4 = buttonContainers.get(draggedButtonsHere4);
+        JPanel Buttons5 = buttonContainers.get(draggedButtonsHere5);
+        
+        draggedButtons[0] = Buttons1;
+        draggedButtons[1] = Buttons2;
+        draggedButtons[2] = Buttons3;
+        draggedButtons[3] = Buttons4;
+        draggedButtons[4] = Buttons5;
+        */
+        
         CustomButton nextButton = new CustomButton("Suivant");
         nextButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		if (player.equals(Main.getPlayer1Name())) {
         			RepartirTroupes repartirtroupes2 = new RepartirTroupes("red",Main.getPlayer2Name());
+        			dispose();
+        		}else if (player.equals(Main.getPlayer2Name())) {
+        			Melee1 melee = new Melee1();
         			dispose();
         		}else {
         			dispose();

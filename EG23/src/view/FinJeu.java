@@ -76,7 +76,7 @@ public class FinJeu {
 		frame.getContentPane().add(centerPanel, BorderLayout.CENTER);
 		ImageIcon map = new ImageIcon("src/pngs/plan_utt.png");
 		
-		CustomLabel lblNewLabel_1 = new CustomLabel("Le Joueur 2 A Gagné!");
+		CustomLabel lblNewLabel_1 = new CustomLabel("Le Joueur 1 A Gagné!");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setForeground(new Color(73, 95, 110));
 		lblNewLabel_1.setFont(new Font("Century Gothic", Font.BOLD, 23));
