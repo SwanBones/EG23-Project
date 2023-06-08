@@ -29,6 +29,7 @@ import javax.swing.SwingUtilities;
 
 import model.CustomButton;
 import model.Main;
+import model.RoundedPanel;
 
 public class SoldierPage extends JFrame{
 
@@ -87,7 +88,7 @@ public class SoldierPage extends JFrame{
         			usingPlayer = Main.getPlayer2Name();
         		} else {
         			RepartirTroupes RepartirTroupes2 = new RepartirTroupes("blue",Main.getPlayer1Name());
-        			frame.dispose(); // Close the menu frame
+        			dispose(); // Close the menu frame
         		}
         	}
         });
@@ -96,7 +97,7 @@ public class SoldierPage extends JFrame{
 		///////////////////////////////////////////
 		
 		//Left Panel for the buttons
-        JPanel leftPanel = new JPanel(new GridBagLayout());
+        RoundedPanel leftPanel = new RoundedPanel(new GridBagLayout());
         leftPanel.setPreferredSize(new Dimension(500, 800));
         leftPanel.setBackground(Main.getLightBeige());
         
@@ -163,12 +164,12 @@ public class SoldierPage extends JFrame{
         /////////////
  
         ////////////////////////////
-        JPanel rightPanel = new JPanel(new BorderLayout());
+        RoundedPanel rightPanel = new RoundedPanel(new BorderLayout());
         rightPanel.setPreferredSize(new Dimension(500, 800));
         rightPanel.setBackground(Main.getLightBeige());
         
         //Caracteristics in right panel
-        JPanel caracPanel = new JPanel(new BorderLayout());
+        RoundedPanel caracPanel = new RoundedPanel(new BorderLayout());
         caracPanel.setBackground(rightPanel.getBackground());
 
         JLabel lblCharacteristique = new JLabel("Caractéristiques");
@@ -272,18 +273,18 @@ public class SoldierPage extends JFrame{
         rightPanel.add(middlePanel, BorderLayout.CENTER);
 
         //Bottom part of Right panel
-        JPanel lowerPanel = new JPanel(new BorderLayout());
+        RoundedPanel lowerPanel = new RoundedPanel(new BorderLayout());
         lowerPanel.setBackground(rightPanel.getBackground());
    
         //Appliquer Panel
-        JPanel appliquerPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        RoundedPanel appliquerPanel = new RoundedPanel(new FlowLayout(FlowLayout.RIGHT));
         appliquerPanel.setBackground(rightPanel.getBackground());
 
         CustomButton appliquerButton = new CustomButton("Appliquer");
         appliquerPanel.add(appliquerButton);
 
         //Points restants Panel
-        JPanel pointsRestantsPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        RoundedPanel pointsRestantsPanel = new RoundedPanel(new FlowLayout(FlowLayout.LEFT));
         pointsRestantsPanel.setBackground(rightPanel.getBackground()); 
    
         JLabel pointsRestantsLabel = new JLabel("5 points restants");
