@@ -115,6 +115,8 @@ public class Menu {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PlayerInfo playerInfo = new PlayerInfo();
+				playerInfo.getFrame().setLocationRelativeTo(frame); // Set the location relative to the menu frame
+				
 				frame.dispose(); // Close the menu frame
 			}
 		});

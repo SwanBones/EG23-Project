@@ -44,6 +44,7 @@ public class PlayerInfo {
 				try {
 					PlayerInfo window = new PlayerInfo();
 					window.frame.setVisible(true);
+					window.frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -63,8 +64,9 @@ public class PlayerInfo {
 	 */
 	public void initialize() {
 		frame = new JFrame();
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 450, 440);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
@@ -97,8 +99,8 @@ public class PlayerInfo {
 		panel_1.add(j1, gbc_j1);
 		
 		textField = new CustomTextField();
-		textField.setPreferredSize(new Dimension(400, 40));
-		textField.setMaximumSize(new Dimension(400, 40));
+		textField.setPreferredSize(new Dimension(400, 80));
+		textField.setMaximumSize(new Dimension(400, 50));
 		JPanel panelWrapper = new JPanel();  // Create a wrapper panel
 		panelWrapper.setLayout(new BoxLayout(panelWrapper, BoxLayout.X_AXIS));
 		panelWrapper.add(Box.createHorizontalGlue());  // Added glue before adding the text field
@@ -121,8 +123,8 @@ public class PlayerInfo {
 		panel_1.add(j2, gbc_j2);
 		
 		textField_1 = new CustomTextField();
-		textField_1.setPreferredSize(new Dimension(400, 40));
-		textField_1.setMaximumSize(new Dimension(400, 40));
+		textField_1.setPreferredSize(new Dimension(400, 80));
+		textField_1.setMaximumSize(new Dimension(400, 50));
 		JPanel panelWrapper1 = new JPanel();  // Create another wrapper panel
 		panelWrapper1.setLayout(new BoxLayout(panelWrapper1, BoxLayout.X_AXIS));
 		panelWrapper1.add(Box.createHorizontalGlue());  // Added glue before adding the text field
@@ -171,7 +173,7 @@ public class PlayerInfo {
 		panel_4.setBackground(Main.getBeige());
 		
 		panel_2.setLayout(new BorderLayout(0, 0));
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String p1Name = textField.getText();
@@ -199,5 +201,8 @@ public class PlayerInfo {
 			}
 		});		
 		
+	}
+	public JFrame getFrame() {
+		return frame;
 	}
 }
