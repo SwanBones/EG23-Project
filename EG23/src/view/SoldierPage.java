@@ -58,7 +58,7 @@ public class SoldierPage extends JFrame{
     public SoldierPage(String player) {
     	usingPlayer = player;
         frame = new JFrame();
-        
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.getContentPane().setBackground(Main.getBeige());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(new BorderLayout());
@@ -353,5 +353,6 @@ public class SoldierPage extends JFrame{
         paddedPanel.setBorder(BorderFactory.createEmptyBorder(padding, padding, padding, padding));
         return paddedPanel;
     }
+    
 	
 }

@@ -3,6 +3,7 @@ package view;
 import java.awt.EventQueue;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Window;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -28,6 +29,7 @@ public class Rules {
 			public void run() {
 				try {
 					Rules window = new Rules();
+					window.frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -45,14 +47,15 @@ public class Rules {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	void initialize() {
+		
 		frame = new JFrame();
+		
 		frame.setUndecorated(true);
 		frame.setVisible(true);
-		
 		frame.getContentPane().setBackground(Main.getBeige());
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
-		
+		frame.setLocationRelativeTo(null);
 		JPanel panel = new JPanel();
 		panel.setBackground(Main.getLightBeige());
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
@@ -89,6 +92,12 @@ public class Rules {
 		
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	public Window getFrame() {
+		
+		// TODO Auto-generated method stub
+		return frame;
 	}
 
 }

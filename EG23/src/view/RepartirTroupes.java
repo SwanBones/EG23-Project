@@ -122,6 +122,7 @@ public class RepartirTroupes extends JFrame {
     	initialize(color, player);
     }
     public void initialize(String color, String player) {
+    	 setExtendedState(JFrame.MAXIMIZED_BOTH);
     	 mapIcon1 = "src/pngs/maps/1-"+color+".png";
     	 mapIcon2 = "src/pngs/maps/2-"+color+".png";
     	 mapIcon3 = "src/pngs/maps/3-"+color+".png";
