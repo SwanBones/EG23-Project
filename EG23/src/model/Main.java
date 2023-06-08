@@ -22,6 +22,8 @@ public class Main {
 	private static Color lightBeige = new Color(237, 225, 205);
 	private static Color darkBlue = new Color(164, 150, 123);
 	private static Color lightBlue = new Color(217, 209, 137);
+
+	private static Color gray = new Color(80, 80, 80);
 		
 	private static Color red = new Color(159, 1, 1);
 	private static Color pressedRed = new Color(128, 0, 0);
@@ -81,6 +83,10 @@ public class Main {
 	}
 	public static void setPlayer2Name(String player2Name) {
 		Main.player2Name = player2Name;
+	}
+	public static Color getGray() {
+		// TODO Auto-generated method stub
+		return gray;
 	}
 	
 }

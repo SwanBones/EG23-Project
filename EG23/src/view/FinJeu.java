@@ -107,4 +107,8 @@ public class FinJeu {
 		
 		
 	}
+	
+	public JFrame getFrame() {
+		return frame;
+	}
 }
