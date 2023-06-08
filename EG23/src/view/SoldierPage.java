@@ -87,8 +87,10 @@ public class SoldierPage extends JFrame{
         			joueurLabel.setText(Main.getPlayer2Name()+": Paramétrez vos troupes");
         			usingPlayer = Main.getPlayer2Name();
         		} else {
+        			dispose();
         			RepartirTroupes RepartirTroupes2 = new RepartirTroupes("blue",Main.getPlayer1Name());
-        			dispose(); // Close the menu frame
+        			 // Close the menu frame
+        			
         		}
         	}
         });
@@ -322,7 +324,7 @@ public class SoldierPage extends JFrame{
         paddedLeftPanel.add(titlePanel, BorderLayout.SOUTH);
         
 		
-		frame = new JFrame();
+		frame = new JFrame(); //WHY ARE THERE TWO JFRAMES
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
