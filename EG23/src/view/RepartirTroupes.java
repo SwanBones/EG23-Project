@@ -198,7 +198,7 @@ public class RepartirTroupes extends JFrame {
         //add(scrollPane, BorderLayout.WEST);
 
         // Buttons
-        for (int i = 1; i <= 20; i++) {
+        for (int i = 1; i <= 15; i++) {
         	CustomButton button;
             if (player.equals(Main.getPlayer1Name())) {
             	 button = new CustomBlueButton("");
@@ -212,7 +212,15 @@ public class RepartirTroupes extends JFrame {
             ImageIcon icon = new ImageIcon(iconPath);
             Image image = icon.getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
             button.setIcon(new ImageIcon(image));
-            button.setText("Soldat " + i);
+            if (i==1) {
+            	button.setText("Maitre de Guerre");
+            } else if (i<6) {
+            	button.setText("Soldat élite " + (i-1));
+            } else {
+            	button.setText("Soldat " + (i-5));
+            }
+            
+            
             buttonPanel.add(button);
             button.setAlignmentX(Component.CENTER_ALIGNMENT);
             buttonOrigins.put(button, button.getLocation());
