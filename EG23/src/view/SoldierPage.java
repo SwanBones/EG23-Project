@@ -88,6 +88,7 @@ public class SoldierPage extends JFrame{
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         bottomPanel.setBackground(Main.getBeige());
         CustomButton suivantButton = new CustomButton("Suivant");
+        suivantButton.setFont(new Font("Century Gothic", Font.BOLD, 24));
         suivantButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		if (usingPlayer.equals(Main.getPlayer1Name())) {

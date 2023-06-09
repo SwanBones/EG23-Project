@@ -443,6 +443,7 @@ public class RepartirTroupes extends JFrame {
         */
         
         CustomButton nextButton = new CustomButton("Suivant");
+        nextButton.setFont(new Font("Century Gothic", Font.BOLD, 24));
         nextButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		if (player.equals(Main.getPlayer1Name())) {

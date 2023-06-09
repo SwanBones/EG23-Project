@@ -18,10 +18,10 @@ public class Main {
 	private static String player1Name;
 	private static String player2Name;
 	
-	private static Color beige = new Color(203, 188, 154);
+	private static Color beige = new Color(207, 200, 178);
 	private static Color lightBeige = new Color(237, 225, 205);
-	private static Color darkBlue = new Color(164, 150, 123);
-	private static Color lightBlue = new Color(217, 209, 137);
+	private static Color darkBlue = new Color(143, 131, 107);
+	private static Color lightBlue = new Color(212, 200, 182);
 
 	private static Color gray = new Color(80, 80, 80);
 	private static Color PressedGray = new Color(60, 60, 60);

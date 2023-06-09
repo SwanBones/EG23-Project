@@ -146,6 +146,18 @@ public class Melee1 extends JFrame {
         JPanel Area5 = new JPanel();
         zonePanel5.add(Area5, BorderLayout.CENTER);
         
+        zonePanel1.setBackground(Main.getLightBeige());
+        zonePanel2.setBackground(Main.getLightBeige());
+        zonePanel3.setBackground(Main.getLightBeige());
+        zonePanel4.setBackground(Main.getLightBeige());
+        zonePanel5.setBackground(Main.getLightBeige());
+        
+        Area1.setBackground(Main.getLightBeige());
+        Area2.setBackground(Main.getLightBeige());
+        Area3.setBackground(Main.getLightBeige());
+        Area4.setBackground(Main.getLightBeige());
+        Area5.setBackground(Main.getLightBeige());
+        
         
         // Buttons 
         List<CustomButton> blue_buttons = new ArrayList<>();

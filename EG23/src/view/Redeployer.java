@@ -377,7 +377,7 @@ public class Redeployer extends JFrame {
         }else {
         	nextButton.setText("Continuer");
         }
-        
+        nextButton.setFont(new Font("Century Gothic", Font.BOLD, 24));
         nextButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		if (player.equals(Main.getPlayer1Name())) {

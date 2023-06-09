@@ -57,7 +57,7 @@ public class Treve {
 		
 
 	/**
-	 * Initialize the contents of the frame.
+	 * @wbp.parser.entryPoint
 	 */
 	private void initialize(int step,JFrame previousMelee) {
 		switch (step) {
@@ -81,6 +81,7 @@ public class Treve {
 		
 		
 		frame = new JFrame();
+		frame.setAlwaysOnTop( true );
 		frame.setUndecorated(true);
 		frame.setLocationRelativeTo(null);
 		frame.setBounds(100, 100, 509, 339);
@@ -111,10 +112,12 @@ public class Treve {
 		CenterPanel.setBackground(Main.getLightBeige());
 		
 		JPanel leftPanel = new JPanel();
+		leftPanel.setBackground(Main.getLightBeige());
 		CenterPanel.add(leftPanel);
 		leftPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JPanel gridBag = new JPanel();
+		gridBag.setBackground(Main.getLightBeige());
 		leftPanel.add(gridBag);
 		GridBagLayout gbl_gridBag = new GridBagLayout();
 		gbl_gridBag.columnWidths = new int[] {0, 0};
@@ -124,6 +127,7 @@ public class Treve {
 		gridBag.setLayout(gbl_gridBag);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(Main.getLightBeige());
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.insets = new Insets(0, 0, 5, 0);
 		gbc_panel.fill = GridBagConstraints.BOTH;
@@ -146,6 +150,7 @@ public class Treve {
 		
 		
 		JPanel two = new JPanel();
+		two.setBackground(Main.getLightBeige());
 		GridBagConstraints gbc_two = new GridBagConstraints();
 		gbc_two.insets = new Insets(0, 0, 5, 0);
 		gbc_two.fill = GridBagConstraints.BOTH;
@@ -172,6 +177,7 @@ public class Treve {
 		*/
 		
 		JPanel three = new JPanel();
+		three.setBackground(Main.getLightBeige());
 		FlowLayout fl_three = (FlowLayout) three.getLayout();
 		GridBagConstraints gbc_three = new GridBagConstraints();
 		gbc_three.insets = new Insets(0, 0, 5, 0);
@@ -184,6 +190,7 @@ public class Treve {
 		three.add(zone4);
 		
 		JPanel four = new JPanel();
+		four.setBackground(Main.getLightBeige());
 		GridBagConstraints gbc_four = new GridBagConstraints();
 		gbc_four.insets = new Insets(0, 0, 5, 0);
 		gbc_four.fill = GridBagConstraints.BOTH;
@@ -195,6 +202,7 @@ public class Treve {
 		four.add(zone3);
 		
 		JPanel five = new JPanel();
+		five.setBackground(Main.getLightBeige());
 		GridBagConstraints gbc_five = new GridBagConstraints();
 		gbc_five.insets = new Insets(0, 0, 5, 0);
 		gbc_five.fill = GridBagConstraints.BOTH;
@@ -206,9 +214,11 @@ public class Treve {
 		five.add(zone5);
 		
 		JPanel rightPanel = new JPanel();
+		rightPanel.setBackground(Main.getLightBeige());
 		CenterPanel.add(rightPanel);
 		
 		JPanel gridBag_1 = new JPanel();
+		gridBag_1.setBackground(Main.getLightBeige());
 		rightPanel.add(gridBag_1);
 		GridBagLayout gbl_gridBag_1 = new GridBagLayout();
 		gbl_gridBag_1.columnWidths = new int[]{0, 0};
@@ -218,6 +228,7 @@ public class Treve {
 		gridBag_1.setLayout(gbl_gridBag_1);
 		
 		JPanel panel_1_1 = new JPanel();
+		panel_1_1.setBackground(Main.getLightBeige());
 		GridBagConstraints gbc_panel_1_1 = new GridBagConstraints();
 		gbc_panel_1_1.fill = GridBagConstraints.BOTH;
 		gbc_panel_1_1.insets = new Insets(0, 0, 5, 0);
@@ -226,6 +237,7 @@ public class Treve {
 		gridBag_1.add(panel_1_1, gbc_panel_1_1);
 		
 		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(Main.getLightBeige());
 		GridBagConstraints gbc_panel_5 = new GridBagConstraints();
 		gbc_panel_5.fill = GridBagConstraints.BOTH;
 		gbc_panel_5.insets = new Insets(0, 0, 5, 0);
@@ -244,6 +256,7 @@ public class Treve {
 		panel_5.add(btnNewButton);
 		
 		JPanel panel_3_1 = new JPanel();
+		panel_3_1.setBackground(Main.getLightBeige());
 		GridBagConstraints gbc_panel_3_1 = new GridBagConstraints();
 		gbc_panel_3_1.fill = GridBagConstraints.BOTH;
 		gbc_panel_3_1.insets = new Insets(0, 0, 5, 0);
@@ -251,7 +264,9 @@ public class Treve {
 		gbc_panel_3_1.gridy = 2;
 		gridBag_1.add(panel_3_1, gbc_panel_3_1);
 		
+		
 		CustomButton btnNewButton_1 = new CustomButton("Continuer");
+		btnNewButton_1.setFont(new Font("Century Gothic", Font.BOLD, 14));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switch (step) {
@@ -284,6 +299,7 @@ public class Treve {
 		panel_3_1.add(btnNewButton_1);
 		
 		JPanel panel_2_1 = new JPanel();
+		panel_2_1.setBackground(Main.getLightBeige());
 		GridBagConstraints gbc_panel_2_1 = new GridBagConstraints();
 		gbc_panel_2_1.fill = GridBagConstraints.BOTH;
 		gbc_panel_2_1.insets = new Insets(0, 0, 5, 0);
@@ -292,6 +308,7 @@ public class Treve {
 		gridBag_1.add(panel_2_1, gbc_panel_2_1);
 		
 		JPanel panel_4_1 = new JPanel();
+		panel_4_1.setBackground(Main.getLightBeige());
 		GridBagConstraints gbc_panel_4_1 = new GridBagConstraints();
 		gbc_panel_4_1.insets = new Insets(0, 0, 5, 0);
 		gbc_panel_4_1.fill = GridBagConstraints.BOTH;

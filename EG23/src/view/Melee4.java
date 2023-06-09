@@ -246,7 +246,17 @@ public class Melee4 extends JFrame {
         timer.start();
         
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        zonePanel1.setBackground(Main.getLightBeige());
+        zonePanel2.setBackground(Main.getLightBeige());
+        zonePanel3.setBackground(Main.getLightBeige());
+        zonePanel4.setBackground(Main.getLightBeige());
+        zonePanel5.setBackground(Main.getLightBeige());
         
+        Area1.setBackground(Main.getLightBeige());
+        Area2.setBackground(Main.getLightBeige());
+        Area3.setBackground(Main.getLightBeige());
+        Area4.setBackground(Main.getLightBeige());
+        Area5.setBackground(Main.getLightBeige());
     }
   
     private void buttonClicked(MouseEvent evt,CustomButton button) {
