@@ -169,8 +169,13 @@ public class RepartirTroupes extends JFrame {
 
         // Title
         CustomLabel title = new CustomLabel(player+": Répartissez vos troupes", SwingConstants.CENTER);
+        if (player.equals(Main.getPlayer1Name())){
+        	title.setForeground(Main.getBlue());
+        }else {
+        	title.setForeground(Main.getRed());
+        }
         title.setFont(new Font("Century Gothic", Font.BOLD, 24));
-        title.setForeground(Main.getDarkBlue());
+        
         getContentPane().add(title, BorderLayout.NORTH);
 
       //Image
