@@ -122,7 +122,7 @@ public class SoldierPage extends JFrame{
 		
 		//Left Panel for the buttons
         RoundedPanel leftPanel = new RoundedPanel(new GridBagLayout());
-        leftPanel.setPreferredSize(new Dimension(500, 700));
+        leftPanel.setPreferredSize(new Dimension(500, 520));
         leftPanel.setBackground(Main.getLightBeige());
         
         // Adding icons
@@ -198,7 +198,7 @@ public class SoldierPage extends JFrame{
  
         ////////////////////////////
         RoundedPanel rightPanel = new RoundedPanel(new BorderLayout());
-        rightPanel.setPreferredSize(new Dimension(500, 700));
+        rightPanel.setPreferredSize(new Dimension(500, 550));
         rightPanel.setBackground(Main.getLightBeige());
         
         //Caracteristics in right panel
