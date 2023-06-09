@@ -217,7 +217,7 @@ public class Redeployer extends JFrame {
         getContentPane().setLayout(new BorderLayout());
 
         // Title
-        CustomLabel title = new CustomLabel(player+": Répartissez vos troupes", SwingConstants.CENTER);
+        CustomLabel title = new CustomLabel(player+": Redéployez vos troupes", SwingConstants.CENTER);
         title.setFont(new Font("Century Gothic", Font.BOLD, 24));
         if (player.equals(Main.getPlayer1Name())){
         	title.setForeground(Main.getBlue());
