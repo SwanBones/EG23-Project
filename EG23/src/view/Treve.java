@@ -81,7 +81,7 @@ public class Treve {
 		
 		
 		frame = new JFrame();
-
+		frame.setUndecorated(true);
 		frame.setLocationRelativeTo(null);
 		frame.setBounds(100, 100, 509, 339);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -234,7 +234,12 @@ public class Treve {
 		gridBag_1.add(panel_5, gbc_panel_5);
 		
 		CustomButton btnNewButton = new CustomButton("Redéployer les troupes");
-		
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Redeployer window = new Redeployer("blue", Main.getPlayer1Name(), step);
+				window.setVisible(true);
+				frame.dispose();
+			}});
 		
 		panel_5.add(btnNewButton);
 		
@@ -254,16 +259,19 @@ public class Treve {
 			    	Melee2 window2 = new Melee2();
 			    	window2.setVisible(true);
 			    	previousMelee.dispose();
+			    	frame.dispose();
 			        break;
 			    case 2:
 			    	Melee3 window3 = new Melee3();
 			    	window3.setVisible(true);
 			    	previousMelee.dispose();
+			    	frame.dispose();
 			        break;
 			    case 3:
 			    	Melee4 window4 = new Melee4();
 			    	window4.setVisible(true);
 			    	previousMelee.dispose();
+			    	frame.dispose();
 			        break;
 			    //case 4:
 			    //	FinJeu window = new FinJeu();

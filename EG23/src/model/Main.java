@@ -24,7 +24,17 @@ public class Main {
 	private static Color lightBlue = new Color(217, 209, 137);
 
 	private static Color gray = new Color(80, 80, 80);
+	private static Color PressedGray = new Color(60, 60, 60);
 		
+	public static Color getPressedGray() {
+		return PressedGray;
+	}
+	public static void setPressedGray(Color pressedGray) {
+		PressedGray = pressedGray;
+	}
+	public static void setGray(Color gray) {
+		Main.gray = gray;
+	}
 	private static Color red = new Color(159, 1, 1);
 	private static Color pressedRed = new Color(128, 0, 0);
 	

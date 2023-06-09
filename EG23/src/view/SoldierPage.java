@@ -92,10 +92,11 @@ public class SoldierPage extends JFrame{
         	public void actionPerformed(ActionEvent e) {
         		if (usingPlayer.equals(Main.getPlayer1Name())) {
         			SoldierPage soldierpage = new SoldierPage(Main.getPlayer2Name());
-        			dispose();
+        			frame.dispose();
         		} else {
-        			dispose();
+        			
         			RepartirTroupes RepartirTroupes2 = new RepartirTroupes("blue",Main.getPlayer1Name());
+        			frame.dispose();
         			 // Close the menu frame
         			
         		}
