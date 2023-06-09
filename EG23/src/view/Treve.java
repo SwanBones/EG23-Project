@@ -236,7 +236,7 @@ public class Treve {
 		CustomButton btnNewButton = new CustomButton("Redéployer les troupes");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Redeployer window = new Redeployer("blue", Main.getPlayer1Name(), step);
+				Redeployer window = new Redeployer("blue", player, step);
 				window.setVisible(true);
 				frame.dispose();
 			}});
