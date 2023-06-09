@@ -23,7 +23,7 @@ import java.awt.Insets;
 
 public class Menu {
 
-	private JFrame frame;
+	JFrame frame;
 	private JPanel menuPanel;
 	private JPanel authorsPanel;
 	private Rules rulesWindow;

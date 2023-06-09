@@ -33,12 +33,13 @@ import javax.swing.JFrame;
 public class Melee4 extends JFrame {
     private static final boolean SCALABLE = true;
     private static final String[] LIEUX = {"BDE", "Centre administratif", "Halle sportive", "-", "-"};
-    
+    JFrame frame;
     //map
     ImagePanel mapImagePanel;
     String defaultMapIcon = "src/pngs/maps/melee/3.png";
     
     String mapIcon0 = "src/pngs/maps/melee/3.png";
+    String mapIcon4 = "src/pngs/maps/melee/4.png";
     
     String redSoldierIcon = "src/pngs/soldierIcons/red_icon.png";
     String orangeSoldierIcon = "src/pngs/soldierIcons/orange_icon.png";
@@ -47,12 +48,14 @@ public class Melee4 extends JFrame {
     
     BufferedImage defaultMapImage = null;
 	BufferedImage mapImage0 = null;
+	BufferedImage mapImage4 = null;
 
     public Melee4() {
     	initialize();
     }
     
     public void initialize() {
+    	frame =this;
     	 mapIcon0 = "src/pngs/maps/melee/0.png";
     	    
     	try {
@@ -62,6 +65,7 @@ public class Melee4 extends JFrame {
     	}
     	try {
         mapImage0 = ImageIO.read(new File(mapIcon0));
+        mapImage4 = ImageIO.read(new File(mapIcon4));
     	}catch(Exception e) {
     		e.printStackTrace();
     	}
@@ -210,9 +214,9 @@ public class Melee4 extends JFrame {
         	int[] red_buttonIndices1 = {17};
             makeButtonsDisappear(red_buttonIndices1,0,red_buttons);
 
-        Area3.setBackground(Main.getLightBlue());
+        Area3.setBackground(Main.getBlue());
         Area5.setBackground(Main.getPressedRed());
-        Area2.setBackground(Main.getLightBlue());
+        Area2.setBackground(Main.getBlue());
    
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
@@ -229,9 +233,12 @@ public class Melee4 extends JFrame {
         Timer timer = new Timer(3000, new ActionListener() {
         	@Override
         	public void actionPerformed(ActionEvent e) {
-        		FinJeu window = new FinJeu();
+        		mapImagePanel.setImage(mapImage4);
+        		Area1.setBackground(Main.getBlue());  
+        		FinJeu window = new FinJeu(frame);
+        		window.getFrame().setLocationRelativeTo(null);
         		window.getFrame().setVisible(true);
-        		dispose();
+        		//dispose();
         	}
         });
 

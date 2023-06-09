@@ -21,13 +21,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JSlider;
+
+import model.CustomRadioButton;
+
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.border.EmptyBorder;
 
+import model.CustomBlueButton;
 import model.CustomButton;
+import model.CustomRedButton;
+import model.CustomSlider;
 import model.Main;
 import model.RoundedPanel;
 
@@ -36,6 +42,7 @@ public class SoldierPage extends JFrame{
 	private JFrame frame;
 	private JLabel soldierIcon;
     private JLabel soldierName;
+    
     
     String redSoldierIcon = "src/pngs/soldierIcons/red_icon.png";
     String orangeSoldierIcon = "src/pngs/soldierIcons/orange_icon.png";
@@ -69,12 +76,12 @@ public class SoldierPage extends JFrame{
         height = (int) (screenSize.height);
         frame.setSize(width, height);
         frame.setVisible(true);
-        initialize();
+        initialize(player);
         
     }
 
 	
-	private void initialize() {
+	private void initialize(String player) {
     	
 
 		//Bottom panel for the "Suivant button"
@@ -84,8 +91,8 @@ public class SoldierPage extends JFrame{
         suivantButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		if (usingPlayer.equals(Main.getPlayer1Name())) {
-        			joueurLabel.setText(Main.getPlayer2Name()+": Paramétrez vos troupes");
-        			usingPlayer = Main.getPlayer2Name();
+        			SoldierPage soldierpage = new SoldierPage(Main.getPlayer2Name());
+        			dispose();
         		} else {
         			dispose();
         			RepartirTroupes RepartirTroupes2 = new RepartirTroupes("blue",Main.getPlayer1Name());
@@ -96,11 +103,26 @@ public class SoldierPage extends JFrame{
         });
         bottomPanel.add(suivantButton);
         frame.getContentPane().add(bottomPanel, BorderLayout.SOUTH);
+        
+     // Create the center panel with a grid layout
+        JPanel centerPanel = new JPanel(new GridLayout(1, 2));
+        centerPanel.setBackground(Main.getBeige());
+        frame.getContentPane().add(centerPanel, BorderLayout.CENTER);
+        
+     // Create the left part and add it to the first column of the grid
+        JPanel leftPartPanel = new JPanel();
+        leftPartPanel.setBackground(Main.getBeige());
+        centerPanel.add(leftPartPanel);
+
+        // Create the right part and add it to the second column of the grid
+        JPanel rightPartPanel = new JPanel();
+        rightPartPanel.setBackground(Main.getBeige());
+        centerPanel.add(rightPartPanel);
 		///////////////////////////////////////////
 		
 		//Left Panel for the buttons
         RoundedPanel leftPanel = new RoundedPanel(new GridBagLayout());
-        leftPanel.setPreferredSize(new Dimension(500, 800));
+        leftPanel.setPreferredSize(new Dimension(500, 700));
         leftPanel.setBackground(Main.getLightBeige());
         
         // Adding icons
@@ -149,25 +171,34 @@ public class SoldierPage extends JFrame{
             gbc.gridx = 0;
         }
         JPanel paddedLeftPanel = createPaddedPanel(leftPanel, 20,Main.getBeige());
-        frame.getContentPane().add(paddedLeftPanel, BorderLayout.WEST);
+        //frame.getContentPane().add(paddedLeftPanel, BorderLayout.WEST);
+        leftPartPanel.add(paddedLeftPanel);
+        
         ////////////////////////////
         
         //Top panel
-        JPanel topPanel = new JPanel();
+        JPanel topPanel = new JPanel(new GridLayout(2, 1));
         topPanel.setBackground(Main.getBeige());
         
         joueurLabel = new JLabel(Main.getPlayer1Name()+": Paramétrez vos troupes");
         joueurLabel.setFont(new Font("Century Gothic", Font.BOLD, 30));
-        joueurLabel.setForeground(Color.WHITE);
+        if(usingPlayer == Main.getPlayer1Name()) {
+        	joueurLabel.setForeground(Main.getBlue());
+        }else {
+        	joueurLabel.setForeground(Main.getRed());
+        }
+        
         joueurLabel.setHorizontalAlignment(SwingConstants.CENTER);
         topPanel.add(joueurLabel);
-        
+        JPanel bottomTitlePanel = new JPanel();
+        bottomTitlePanel.setBackground(Main.getBeige());
+        topPanel.add(bottomTitlePanel);
         frame.getContentPane().add(topPanel, BorderLayout.NORTH);
         /////////////
  
         ////////////////////////////
         RoundedPanel rightPanel = new RoundedPanel(new BorderLayout());
-        rightPanel.setPreferredSize(new Dimension(500, 800));
+        rightPanel.setPreferredSize(new Dimension(500, 700));
         rightPanel.setBackground(Main.getLightBeige());
         
         //Caracteristics in right panel
@@ -181,7 +212,7 @@ public class SoldierPage extends JFrame{
         caracPanel.add(lblCharacteristique, BorderLayout.NORTH);
 
         JPanel slidersPanel = new JPanel(new GridLayout(0, 1, 0, 10));
-        slidersPanel.setBackground(slidersPanel.getBackground());
+        slidersPanel.setBackground(Main.getLightBeige());
         caracPanel.add(slidersPanel, BorderLayout.CENTER);
 
         // Array of characteristic names
@@ -189,7 +220,7 @@ public class SoldierPage extends JFrame{
 
         for (String characteristic : characteristicNames) {
         	JPanel characteristicPanel = new JPanel(new BorderLayout());
-        	characteristicPanel.setBackground(slidersPanel.getBackground());
+        	characteristicPanel.setBackground(Main.getLightBeige());
         	slidersPanel.add(characteristicPanel);
 
         	JLabel lblCharacteristicName = new JLabel(characteristic);
@@ -198,10 +229,10 @@ public class SoldierPage extends JFrame{
         	characteristicPanel.add(lblCharacteristicName, BorderLayout.NORTH);
 
         	JPanel sliderPanel = new JPanel(new BorderLayout());
-        	sliderPanel.setBackground(slidersPanel.getBackground());
+        	sliderPanel.setBackground(Main.getLightBeige());
         	characteristicPanel.add(sliderPanel, BorderLayout.CENTER);
 
-        	JSlider slider = new JSlider(JSlider.HORIZONTAL, 0, 30, 15);
+        	CustomSlider slider = new CustomSlider(JSlider.HORIZONTAL, 0, 30, 15);
         	slider.setMajorTickSpacing(30);
         	slider.setMinorTickSpacing(5);
         	slider.setPaintTicks(true);
@@ -209,6 +240,9 @@ public class SoldierPage extends JFrame{
         	sliderPanel.add(slider, BorderLayout.CENTER);
 
         	JTextField textField = new JTextField(3);
+        	textField.setFont(new Font("Century Gothic", Font.BOLD, 12));
+        	textField.setBackground(Main.getLightBeige());
+        	textField.setBorder(new EmptyBorder(0, 0, 0, 0));
         	textField.setEditable(false);
         	textField.setHorizontalAlignment(JTextField.CENTER);
         	textField.setText(String.valueOf(slider.getValue()));
@@ -216,7 +250,7 @@ public class SoldierPage extends JFrame{
 
         	slider.addChangeListener(new javax.swing.event.ChangeListener() {
         		public void stateChanged(javax.swing.event.ChangeEvent evt) {
-        			JSlider source = (JSlider) evt.getSource();
+        			CustomSlider source = (CustomSlider) evt.getSource();
         			textField.setText(String.valueOf(source.getValue()));
         		}
         	});
@@ -238,9 +272,9 @@ public class SoldierPage extends JFrame{
         lblIntelligence.setForeground(Main.getDarkBlue());
         intelligencePanel.add(lblIntelligence);
 
-        JRadioButton defensiveRadioButton = new JRadioButton("Défensif");
-        JRadioButton offensiveRadioButton = new JRadioButton("Offensif");
-        JRadioButton randomRadioButton = new JRadioButton("Aléatoire");
+        CustomRadioButton defensiveRadioButton = new CustomRadioButton("Défensif");
+        CustomRadioButton offensiveRadioButton = new CustomRadioButton("Offensif");
+        CustomRadioButton randomRadioButton = new CustomRadioButton("Aléatoire");
 
         ButtonGroup intelligenceButtonGroup = new ButtonGroup();
         intelligenceButtonGroup.add(defensiveRadioButton);
@@ -298,19 +332,19 @@ public class SoldierPage extends JFrame{
         rightPanel.add(lowerPanel, BorderLayout.SOUTH);
         
         JPanel paddedRightPanel = createPaddedPanel(rightPanel, 20,Main.getBeige());
-        frame.getContentPane().add(paddedRightPanel, BorderLayout.EAST);
-
+        //frame.getContentPane().add(paddedRightPanel, BorderLayout.EAST);
+        rightPartPanel.add(paddedRightPanel);
         
         
         soldierIcon = new JLabel();
         soldierIcon.setPreferredSize(new Dimension(75, 75));
         soldierIcon.setHorizontalAlignment(SwingConstants.CENTER);
-        topPanel.add(soldierIcon);
+        bottomTitlePanel.add(soldierIcon);
 
         soldierName = new JLabel();
         soldierName.setFont(new Font("Century Gothic", Font.BOLD, 50));
         soldierName.setHorizontalAlignment(SwingConstants.CENTER);
-        topPanel.add(soldierName);
+        bottomTitlePanel.add(soldierName);
 
         JLabel lblTitle = new JLabel("Liste des combattants");
         lblTitle.setFont(new Font("Century Gothic", Font.BOLD, 30));
@@ -324,20 +358,33 @@ public class SoldierPage extends JFrame{
         paddedLeftPanel.add(titlePanel, BorderLayout.SOUTH);
         
 		
-		frame = new JFrame(); //WHY ARE THERE TWO JFRAMES
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JPanel otherPanel = new JPanel(); //WHY ARE THERE TWO JFRAMES
+		otherPanel.setBounds(100, 100, 450, 300);
+		//otherPanel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	private CustomButton createIconButton(ImageIcon icon, String name) {
-    	CustomButton button = new CustomButton(icon);
-        button.setPreferredSize(new Dimension(75, 75));
-        button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                soldierIcon.setIcon(icon);
-                soldierName.setText(name);
-            }
-        });
+		CustomButton button = null;
+    	
+		if (usingPlayer == Main.getPlayer1Name()) {
+    		button = new CustomBlueButton(icon);
+            button.setPreferredSize(new Dimension(75, 75));
+            button.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    soldierIcon.setIcon(icon);
+                    soldierName.setText(name);
+                }
+            });
+    	}else {
+    		button = new CustomRedButton(icon);
+            button.setPreferredSize(new Dimension(75, 75));
+            button.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    soldierIcon.setIcon(icon);
+                    soldierName.setText(name);
+                }
+            });
+    	}
         return button;
     }
 	

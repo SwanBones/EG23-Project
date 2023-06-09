@@ -33,12 +33,15 @@ import javax.swing.JFrame;
 public class Melee2 extends JFrame {
     private static final boolean SCALABLE = true;
     private static final String[] LIEUX = {"BDE", "Centre administratif", "Halle sportive", "-", "-"};
+    JFrame frame;
+    
     
     //map
     ImagePanel mapImagePanel;
     String defaultMapIcon = "src/pngs/maps/melee/1.png";
     
     String mapIcon0 = "src/pngs/maps/melee/1.png";
+    String mapIcon2 = "src/pngs/maps/melee/2.png";
     
     String redSoldierIcon = "src/pngs/soldierIcons/red_icon.png";
     String orangeSoldierIcon = "src/pngs/soldierIcons/orange_icon.png";
@@ -47,12 +50,14 @@ public class Melee2 extends JFrame {
     
     BufferedImage defaultMapImage = null;
 	BufferedImage mapImage0 = null;
+	BufferedImage mapImage2 = null;
 
     public Melee2() {
     	initialize();
     }
     
     public void initialize() {
+    	frame = this;
     	 mapIcon0 = "src/pngs/maps/melee/0.png";
     	    
     	try {
@@ -62,6 +67,7 @@ public class Melee2 extends JFrame {
     	}
     	try {
         mapImage0 = ImageIO.read(new File(mapIcon0));
+        mapImage2 = ImageIO.read(new File(mapIcon2));
     	}catch(Exception e) {
     		e.printStackTrace();
     	}
@@ -222,7 +228,7 @@ public class Melee2 extends JFrame {
             int[] blue_buttonIndices2 = {3,5};
             makeButtonsDisappear(blue_buttonIndices2,0,blue_buttons);
 
-        Area3.setBackground(Main.getLightBlue());    
+        Area3.setBackground(Main.getBlue());    
    
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
@@ -239,9 +245,13 @@ public class Melee2 extends JFrame {
         Timer timer = new Timer(7000, new ActionListener() {
         	@Override
         	public void actionPerformed(ActionEvent e) {
-        		Treve window = new Treve(2);
+        		
+				mapImagePanel.setImage(mapImage2);
+        		Area5.setBackground(Main.getRed());  
+        		Treve window = new Treve(2,frame);
+        		window.frame.setLocationRelativeTo(null);
         		window.frame.setVisible(true);
-        		dispose();
+        		//dispose();
         	}
         });
 

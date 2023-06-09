@@ -34,11 +34,12 @@ public class Treve {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					int step;
 					Main.setPlayer1Name("p1");
 					Main.setPlayer2Name("p2");
-					Treve window = new Treve(2);
-					window.frame.setVisible(true);
-					window.frame.setLocationRelativeTo(null);
+					//Treve window = new Treve(step,Melee2());
+					//window.frame.setVisible(true);
+					//window.frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -49,8 +50,8 @@ public class Treve {
 	/**
 	 * Create the application.
 	 */
-	public Treve(int step) {
-		initialize(step);
+	public Treve(int step,JFrame previousMelee) {
+		initialize(step,previousMelee);
 		}
 		
 		
@@ -58,7 +59,7 @@ public class Treve {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(int step) {
+	private void initialize(int step,JFrame previousMelee) {
 		switch (step) {
 	    case 1:
 	        player = Main.getPlayer1Name();
@@ -250,16 +251,19 @@ public class Treve {
 			public void actionPerformed(ActionEvent e) {
 				switch (step) {
 			    case 1:
-			    	//Melee2 window = new Melee2();
-			    	//window.setVisible(true);
+			    	Melee2 window2 = new Melee2();
+			    	window2.setVisible(true);
+			    	previousMelee.dispose();
 			        break;
 			    case 2:
-			    	//Melee3 window = new Melee3();
-			    	//window.setVisible(true);
+			    	Melee3 window3 = new Melee3();
+			    	window3.setVisible(true);
+			    	previousMelee.dispose();
 			        break;
 			    case 3:
-			    	//Melee4 window = new Melee4();
-			    	//window.setVisible(true);
+			    	Melee4 window4 = new Melee4();
+			    	window4.setVisible(true);
+			    	previousMelee.dispose();
 			        break;
 			    //case 4:
 			    //	FinJeu window = new FinJeu();

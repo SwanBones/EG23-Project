@@ -16,6 +16,7 @@ import javax.swing.SwingConstants;
 
 import model.CustomButton;
 import model.CustomLabel;
+import model.Main;
 
 import java.awt.FlowLayout;
 import javax.swing.AbstractListModel;
@@ -33,8 +34,8 @@ public class FinJeu {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FinJeu window = new FinJeu();
-					window.frame.setVisible(true);
+					//FinJeu window = new FinJeu(JFrame melee = new Melee4()null);
+					//window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -45,15 +46,16 @@ public class FinJeu {
 	/**
 	 * Create the application.
 	 */
-	public FinJeu() {
-		initialize();
+	public FinJeu(JFrame melee4) {
+		initialize(melee4);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(JFrame melee4) {
 		frame = new JFrame();
+		frame.setUndecorated(true);
 		frame.getContentPane().setBackground(new Color(218, 179, 124));
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
@@ -76,7 +78,7 @@ public class FinJeu {
 		frame.getContentPane().add(centerPanel, BorderLayout.CENTER);
 		ImageIcon map = new ImageIcon("src/pngs/plan_utt.png");
 		
-		CustomLabel lblNewLabel_1 = new CustomLabel("Le Joueur 1 A Gagné!");
+		CustomLabel lblNewLabel_1 = new CustomLabel("Le Joueur 1 ("+Main.getPlayer1Name()+") A Gagné!");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setForeground(new Color(73, 95, 110));
 		lblNewLabel_1.setFont(new Font("Century Gothic", Font.BOLD, 23));
@@ -87,6 +89,9 @@ public class FinJeu {
 			public void actionPerformed(ActionEvent e) {
 				Menu menu = new Menu();
                 menu.initialize();
+                menu.frame.setVisible(true);
+                menu.frame.setLocationRelativeTo(null);
+                melee4.dispose();
                 frame.dispose(); // Close the menu frame
 			}
 		});

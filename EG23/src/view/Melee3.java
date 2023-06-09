@@ -34,11 +34,14 @@ public class Melee3 extends JFrame {
     private static final boolean SCALABLE = true;
     private static final String[] LIEUX = {"BDE", "Centre administratif", "Halle sportive", "-", "-"};
     
+    JFrame frame;
+    
     //map
     ImagePanel mapImagePanel;
     String defaultMapIcon = "src/pngs/maps/melee/2.png";
     
     String mapIcon0 = "src/pngs/maps/melee/2.png";
+    String mapIcon3 = "src/pngs/maps/melee/3.png";
     
     String redSoldierIcon = "src/pngs/soldierIcons/red_icon.png";
     String orangeSoldierIcon = "src/pngs/soldierIcons/orange_icon.png";
@@ -47,6 +50,7 @@ public class Melee3 extends JFrame {
     
     BufferedImage defaultMapImage = null;
 	BufferedImage mapImage0 = null;
+	BufferedImage mapImage3 = null;
 
     public Melee3() {
     	initialize();
@@ -54,7 +58,7 @@ public class Melee3 extends JFrame {
     
     public void initialize() {
     	 mapIcon0 = "src/pngs/maps/melee/0.png";
-    	    
+    	   frame = this;
     	try {
     	defaultMapImage = ImageIO.read(new File(defaultMapIcon));
     	}catch(Exception e) {
@@ -62,6 +66,7 @@ public class Melee3 extends JFrame {
     	}
     	try {
         mapImage0 = ImageIO.read(new File(mapIcon0));
+        mapImage3 = ImageIO.read(new File(mapIcon3));
     	}catch(Exception e) {
     		e.printStackTrace();
     	}
@@ -214,7 +219,7 @@ public class Melee3 extends JFrame {
             int[] blue_buttonIndices1 = {7,8,13};
             makeButtonsDisappear(blue_buttonIndices1,0,blue_buttons);
 
-        Area3.setBackground(Main.getLightBlue());
+        Area3.setBackground(Main.getBlue());
         Area5.setBackground(Main.getPressedRed());
    
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -232,9 +237,13 @@ public class Melee3 extends JFrame {
         Timer timer = new Timer(7000, new ActionListener() {
         	@Override
         	public void actionPerformed(ActionEvent e) {
-        		Treve window = new Treve(3);
+        		mapImagePanel.setImage(mapImage3);
+        		Area2.setBackground(Main.getBlue());  
+        		Treve window = new Treve(3,frame);
+        		window.frame.setLocationRelativeTo(null);
         		window.frame.setVisible(true);
-        		dispose();
+        		
+        		//dispose();
         	}
         });
 

@@ -31,6 +31,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 
 public class Melee1 extends JFrame {
+	
+	private JFrame frame;
     private static final boolean SCALABLE = true;
     private static final String[] LIEUX = {"BDE", "Centre administratif", "Halle sportive", "-", "-"};
     
@@ -39,6 +41,7 @@ public class Melee1 extends JFrame {
     String defaultMapIcon = "src/pngs/maps/melee/0.png";
     
     String mapIcon0 = "src/pngs/maps/melee/0.png";
+    String mapIcon1 = "src/pngs/maps/melee/1.png";
     
     String redSoldierIcon = "src/pngs/soldierIcons/red_icon.png";
     String orangeSoldierIcon = "src/pngs/soldierIcons/orange_icon.png";
@@ -47,12 +50,14 @@ public class Melee1 extends JFrame {
     
     BufferedImage defaultMapImage = null;
 	BufferedImage mapImage0 = null;
+	BufferedImage mapImage1 = null;
 
     public Melee1() {
     	initialize();
     }
     
     public void initialize() {
+    	frame = this;
     	 mapIcon0 = "src/pngs/maps/melee/0.png";
     	    
     	try {
@@ -62,6 +67,7 @@ public class Melee1 extends JFrame {
     	}
     	try {
         mapImage0 = ImageIO.read(new File(mapIcon0));
+        mapImage1 = ImageIO.read(new File(mapIcon1));
     	}catch(Exception e) {
     		e.printStackTrace();
     	}
@@ -221,7 +227,7 @@ public class Melee1 extends JFrame {
             makeButtonsDisappear(blue_buttonIndices1,0,blue_buttons);
             int[] blue_buttonIndices2 = {6,10};
             makeButtonsDisappear(blue_buttonIndices2,0,blue_buttons);
-
+            
    
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
@@ -238,9 +244,13 @@ public class Melee1 extends JFrame {
         Timer timer = new Timer(9000, new ActionListener() {
         	@Override
         	public void actionPerformed(ActionEvent e) {
-        		Treve window = new Treve(1);
+        		
+        		mapImagePanel.setImage(mapImage1);
+        		Area3.setBackground(Main.getBlue());  
+        		Treve window = new Treve(1,frame);
+        		window.frame.setLocationRelativeTo(null);
         		window.frame.setVisible(true);
-        		dispose();
+        		//dispose();
         	}
         });
 
@@ -281,4 +291,6 @@ public class Melee1 extends JFrame {
     	SwingUtilities.invokeLater(() -> new Melee1());
         
     }
+    
+    
 }
