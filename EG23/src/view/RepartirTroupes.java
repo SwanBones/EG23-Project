@@ -174,7 +174,7 @@ public class RepartirTroupes extends JFrame {
         }else {
         	title.setForeground(Main.getRed());
         }
-        title.setFont(new Font("Century Gothic", Font.BOLD, 24));
+        title.setFont(new Font("Century Gothic", Font.BOLD, 40));
         
         getContentPane().add(title, BorderLayout.NORTH);
 

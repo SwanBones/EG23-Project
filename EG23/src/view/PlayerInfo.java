@@ -74,7 +74,7 @@ public class PlayerInfo {
 		frame.getContentPane().add(panel, BorderLayout.NORTH);
 		
 		CustomLabel lblNewLabel = new CustomLabel("Entrez vos noms");
-		lblNewLabel.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		lblNewLabel.setFont(new Font("Century Gothic", Font.BOLD, 40));
 		
 		panel.add(lblNewLabel);
 		panel.setBackground(Main.getLightBeige());

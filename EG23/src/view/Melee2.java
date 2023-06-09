@@ -79,8 +79,8 @@ public class Melee2 extends JFrame {
 
         // Title
         CustomLabel title = new CustomLabel("Mêlée", SwingConstants.CENTER);
-        title.setFont(new Font("Century Gothic", Font.BOLD, 24));
-        title.setForeground(Main.getDarkBlue());
+        title.setFont(new Font("Century Gothic", Font.BOLD, 40));
+        title.setForeground(Main.getGray());
         getContentPane().add(title, BorderLayout.NORTH);
 
         //Image
