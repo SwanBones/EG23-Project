@@ -51,20 +51,20 @@ public class FinJeu {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * @wbp.parser.entryPoint
 	 */
 	private void initialize(JFrame melee4) {
 		frame = new JFrame();
 		frame.setUndecorated(true);
-		frame.getContentPane().setBackground(new Color(218, 179, 124));
+		frame.getContentPane().setBackground(Main.getLightBeige());
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		JPanel leftPanel = new JPanel();
-		leftPanel.setBackground(new Color(218, 179, 124));
+		leftPanel.setBackground(Main.getLightBeige());
 		frame.getContentPane().add(leftPanel, BorderLayout.WEST);
 		
 		JPanel topPanel = new JPanel();
-		topPanel.setBackground(new Color(218, 179, 124));
+		topPanel.setBackground(Main.getLightBeige());
 		frame.getContentPane().add(topPanel, BorderLayout.NORTH);
 		
 		CustomLabel lblNewLabel = new CustomLabel("FIN DU JEU");
@@ -74,7 +74,7 @@ public class FinJeu {
 		
 		//Center Panel for map
 		JPanel centerPanel = new JPanel(new BorderLayout());
-		centerPanel.setBackground(new Color(218, 179, 124));
+		centerPanel.setBackground(Main.getLightBeige());
 		frame.getContentPane().add(centerPanel, BorderLayout.CENTER);
 		ImageIcon map = new ImageIcon("src/pngs/plan_utt.png");
 		
@@ -96,16 +96,16 @@ public class FinJeu {
 			}
 		});
 		centerPanel.add(btnNewButton, BorderLayout.SOUTH);
-		btnNewButton.setFont(new Font("Century Gothic", Font.BOLD, 11));
+		btnNewButton.setFont(new Font("Century Gothic", Font.BOLD, 20));
 
 		
 		//Bottom Panel
 		JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		bottomPanel.setBackground(new Color(218, 179, 124));
+		bottomPanel.setBackground(Main.getLightBeige());
 		frame.getContentPane().add(bottomPanel, BorderLayout.SOUTH);
 		
 		JPanel rightPanel = new JPanel();
-		rightPanel.setBackground(new Color(218, 179, 124));
+		rightPanel.setBackground(Main.getLightBeige());
 		frame.getContentPane().add(rightPanel, BorderLayout.EAST);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
